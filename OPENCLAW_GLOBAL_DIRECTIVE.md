@@ -91,3 +91,27 @@ PoC is DONE only when all are true:
 ## 6) CHANGE CONTROL
 - Locked items change requires: Experiment → ADR → Changelog → version bump
 - Avoid scope creep: if new feature is proposed, it must be justified as PoC-critical.
+
+## 7) CODING AGENT POLICY (Codex CLI)
+### 7.1 기본 정책
+- Codex는 **로컬 커밋 자동 생성 OK**.
+- Codex의 **push는 조건부**(아래 룰 모두 만족 시에만 허용).
+
+### 7.2 조건부 push 룰
+**자동 push 허용(모두 만족 필요):**
+- 변경 파일이 `godot/**`, `.gitignore`, `docs/PACKETS/**` 범위 **내**
+- (가능한 경우) `gdformat` / `gdlint` **통과** *(또는 동등한 Godot lint/format 체크)*
+- `docs/PACKETS/STATE_PACKET.md`에 **변경 요약 + Next actions 3개** 업데이트 완료
+
+**자동 push 금지(하나라도 해당 시):**
+- 허용 범위 밖 파일 변경
+- PACKETS 과도하게 길어짐(1페이지 원칙 위반)
+- STATE_PACKET 누락/미갱신
+- 빌드/체크 실패
+
+### 7.3 OpenClaw → Dev(Codex) 실행 지시 템플릿 (항상 포함)
+> push는 아래 조건을 모두 만족할 때만 허용한다.
+> - 변경 파일이 `godot/`, `.gitignore`, `docs/PACKETS/` 범위 내
+> - gdformat/gdlint 통과
+> - STATE_PACKET에 변경 요약 + Next actions 3개 업데이트
+> 조건을 하나라도 만족하지 못하면 push하지 말고, 로컬 커밋만 남기고 보고하라.
