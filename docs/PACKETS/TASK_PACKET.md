@@ -1,13 +1,15 @@
 # TASK_PACKET (Dev / Codex)
 
 ## Task
-- Issue: **DEV-001 — Godot 프로젝트/레포 기본 구조 + .gitignore + PACKETS 적용**
+- Issue: **DEV-002 — Player Controller v0: 이동/공격(오토에임 placeholder)/Dash(쿨/무적)**
 - Target model: **gpt-5.3-codex (big)**
-- Files allowed to modify (explicit):
-  - `godot/**`
-  - `.gitignore`
-  - `docs/PACKETS/**`
-  - (필요 시) `tools/**` *(이번 태스크에서는 사용하지 않는 것을 우선)*
+- Branch/PR policy:
+  - **DO NOT push to `main`**. Work on a feature branch and open a PR.
+  - PR must pass required checks: **packets-gate**, **gdscript-lint**.
+
+## Files allowed to modify (explicit)
+- `godot/**`
+- `docs/PACKETS/**` *(only if you must update STATE_PACKET at end)*
 
 ## Read first
 - `docs/PACKETS/STATE_PACKET.md`
@@ -15,35 +17,36 @@
 - `docs/PACKETS/QA_PACKET.md` (Week1 scope)
 
 ## Requirements
-### Must
-- Godot 4.x 프로젝트가 **repo 안에서 Desktop 실행 1회 성공**해야 한다.
-- Godot 캐시/빌드 산출물 등 **불필요 파일은 커밋되지 않도록** `.gitignore`를 정리한다.
-  - 최소: `.godot/`, `*.import`, `.mono/`(사용 시), `export_presets.cfg`(정책에 따라) 등
-- PACKETS 파일이 repo에 존재하고, Dev 작업 종료 시 아래를 갱신한다.
-  - `STATE_PACKET > Current build` (Last successful run 날짜 포함)
-  - `STATE_PACKET > Known issues` (발견된 blocker가 있으면 1~2개만)
-  - `STATE_PACKET > Next actions` (DEV-002로 이어지게)
+### Must (what to build)
+- Implement **player movement** (mobile-first target, but desktop input OK for now):
+  - Move with WASD/Arrow keys *(keep input actions flexible for mobile mapping later)*
+- Implement **attack placeholder**:
+  - Basic attack triggered by a single input (e.g. `attack_btn`)
+  - Auto-aim placeholder is OK: pick the nearest enemy in range or forward direction; if none, fire forward.
+- Implement **dash**:
+  - Input: `dash_btn`
+  - Cooldown: **0.75s** (configurable)
+  - Invulnerability window: **0.12s** (configurable)
+  - Provide at least a **debug cooldown indicator** (text/print/UI label OK)
 
-### Must NOT
-- 신규 게임 시스템(시너지/카드/런루프/적 추가) 구현 금지
-- Android export/성능 작업 금지
-- “편의상” 구조를 크게 바꾸는 리팩터링 금지 (Week1은 재현 루트가 우선)
-
-## Output / Structure expectations
-- `godot/` 아래에 Godot 프로젝트 루트(예: `godot/project.godot`)가 명확히 존재
-- 최소 실행 씬 1개(예: `Main.tscn`)가 있고, 실행 시 크래시 없이 화면이 뜸
-- (선택) 디버그 HUD 텍스트 1줄: build tag 또는 현재 씬명 표시
+### Must NOT (scope cut)
+- No card/synergy/run-loop systems
+- No new enemy types
+- No Android export/performance work
+- No large refactors unrelated to controller
 
 ## Acceptance criteria
-- [ ] `godot/` 프로젝트를 **Desktop에서 실행**해 1회 이상 정상 동작 (크래시/에러 없이)
-- [ ] `.gitignore`가 적용되어 `.godot/` 등 캐시가 커밋 대상에서 제외됨
-- [ ] `docs/PACKETS/STATE_PACKET.md`의 **Current build**가 업데이트됨
-  - Last successful run: YYYY-MM-DD
-  - Version tag: (planned → 실제 값으로 확정 or planned 유지하되 실행일 기록)
-- [ ] 다음 작업(DEV-002)을 막는 **blocker가 없는지** 짧게 확인하고, 있으면 Known issues에 1줄로 기록
+- [ ] Desktop smoke: in-editor run does not crash
+- [ ] Player can move reliably for 60s without stuck input
+- [ ] Dash triggers reliably, respects cooldown, and invuln window is applied (debug log ok)
+- [ ] Basic attack triggers and produces a visible effect (projectile/hitbox/debug line) at least once
+- [ ] `docs/PACKETS/STATE_PACKET.md` updated at end (Known issues + Next actions 3)
 
 ## Linked tests (TC)
-- 직접 TC 수행은 아님. 단, Week1 Must인 **TC04/TC01**을 위해 ‘실행 가능한 베이스’를 만든다.
+- Supports **TC04** (requires stable control + dash) and later **TC01/02** (commit readability depends on stable input).
 
-## Commit message suggestion
-- `chore: add godot baseline project + gitignore + packets wired`
+## Commit message format
+- Use: `DEV-002: player controller v0 (move/attack/dash)`
+
+## Notes
+- Prefer data/config values in a single place (constants/resource) so Week1 tuning is fast.
