@@ -1,0 +1,10 @@
+# Godot generated/cache artifacts
+.godot/
+**/.godot/
+*.import
+.mono/
+export_presets.cfg.user
+
+# Project-local build outputs
+godot/build/
+
