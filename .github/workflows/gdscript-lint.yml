@@ -4,6 +4,10 @@ on:
   pull_request:
     paths:
       - 'godot/**'
+  push:
+    branches: [ main ]
+    paths:
+      - 'godot/**'
 
 jobs:
   lint:
