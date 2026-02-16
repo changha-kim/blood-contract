@@ -1,0 +1,53 @@
+name: packets-gate
+
+on:
+  pull_request:
+    paths:
+      - 'docs/PACKETS/**'
+      - 'OPENCLAW_GLOBAL_DIRECTIVE.md'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: STATE_PACKET must include Next actions (>=3)
+        run: |
+          python - <<'PY'
+          import re, pathlib, sys
+          p = pathlib.Path('docs/PACKETS/STATE_PACKET.md')
+          txt = p.read_text(encoding='utf-8', errors='replace')
+          m = re.search(r'^## Next actions \(do next; max 5\)\s*\n(.*?)(?:\n## |\Z)', txt, flags=re.M|re.S)
+          if not m:
+            print('Missing Next actions section')
+            sys.exit(1)
+          body = m.group(1)
+          items = [ln for ln in body.splitlines() if re.match(r'^\s*\d+\)\s+\S', ln)]
+          if len(items) < 3:
+            print(f'Next actions has {len(items)} items, expected >= 3')
+            sys.exit(1)
+          print('OK: Next actions count =', len(items))
+          PY
+
+      - name: PACKETS should remain concise (soft gate)
+        run: |
+          python - <<'PY'
+          import pathlib
+          files = [
+            pathlib.Path('docs/PACKETS/PLAN_PACKET.md'),
+            pathlib.Path('docs/PACKETS/QA_PACKET.md'),
+            pathlib.Path('docs/PACKETS/TASK_PACKET.md'),
+            pathlib.Path('docs/PACKETS/CRITIC_PACKET.md'),
+            pathlib.Path('docs/PACKETS/STATE_PACKET.md'),
+          ]
+          for p in files:
+            if not p.exists():
+              continue
+            lines = p.read_text(encoding='utf-8', errors='replace').splitlines()
+            # Advisory threshold: doesn't fail, but prints warnings.
+            if len(lines) > 250:
+              print(f'WARN: {p} is long ({len(lines)} lines). Consider trimming to 1-page summary.')
+            else:
+              print(f'OK: {p} ({len(lines)} lines)')
+          PY

@@ -110,7 +110,8 @@ PoC is DONE only when all are true:
 - 빌드/체크 실패
 
 ### 7.3 OpenClaw → Dev(Codex) 실행 지시 템플릿 (항상 포함)
-> push는 아래 조건을 모두 만족할 때만 허용한다.
+> 기본 운영은 **PR 기반**이다: main 직접 push 금지. (브랜치 생성 → PR → Actions 통과 후 merge)
+> Codex는 push를 아래 조건을 모두 만족할 때만 허용한다.
 > - 변경 파일이 `godot/`, `.gitignore`, `docs/PACKETS/` 범위 내
 > - gdformat/gdlint 통과
 > - STATE_PACKET에 변경 요약 + Next actions 3개 업데이트
