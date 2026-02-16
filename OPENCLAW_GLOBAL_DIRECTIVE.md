@@ -116,3 +116,4 @@ PoC is DONE only when all are true:
 > - gdformat/gdlint 통과
 > - STATE_PACKET에 변경 요약 + Next actions 3개 업데이트
 > 조건을 하나라도 만족하지 못하면 push하지 말고, 로컬 커밋만 남기고 보고하라.
+
