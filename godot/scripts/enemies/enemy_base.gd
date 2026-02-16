@@ -36,6 +36,7 @@ var _micro_slow_active: bool = false
 var _prev_time_scale: float = 1.0
 
 func _ready() -> void:
+	add_to_group("targetable")
 	target = get_node_or_null(target_path) as Node2D
 	health.died.connect(queue_free)
 	hitbox.hit_hurtbox.connect(_on_hitbox_hurtbox)
