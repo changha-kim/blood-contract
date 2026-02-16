@@ -1,26 +1,29 @@
 # CRITIC_PACKET (Red Team)
 
+> 목적: “기획을 넓히기”가 아니라, **PoC 목표 달성을 방해하는 요소를 찾아서 깎기**.
+> 규칙: 기능 추가 제안은 원칙적으로 금지. (필요하면 “대체안/스코프 컷” 형태로만)
+
 ## What I reviewed
-- PLAN_PACKET:
-- STATE_PACKET:
-- Any new ADRs:
+- PLAN_PACKET (link)
+- GDD promises: Intent / Synergy / ShortRun / Mobile
+- Current risks: Commit confusion, mobile clutter, spike cheese, run length
 
-## Biggest risks / holes (top 5)
-1.
-2.
-3.
-4.
-5.
+## Top 5 objections (가장 위험한 허점 5개)
+1)
+2)
+3)
+4)
+5)
 
-## “Scope creep” alerts
-- Things that should be cut or postponed:
+## Scope cuts (이번 주에 잘라야 하는 것 3~5개)
+- Cut 1:
+- Cut 2:
+- Cut 3:
 
-## Clarity checks (player)
-- What will confuse the player?
-- What feedback is missing?
+## Testability check (검증 불가능한 문장/목표를 “TC 문장”으로 바꾸기)
+- Before:
+- After (measurable):
 
-## Suggestions (minimal, not feature creep)
-- 1-3 small fixes to increase success odds this week:
-1.
-2.
-3.
+## QA focus suggestions (TC 추천)
+- Must:
+- Optional:

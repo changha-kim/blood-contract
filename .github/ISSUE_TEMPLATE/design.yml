@@ -1,0 +1,21 @@
+name: "디자인 (Art/Audio/UI)"
+description: "에셋/사운드/UI 관련"
+labels: ["team:design"]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: 필요 항목
+      description: "어떤 에셋/사운드가 필요한가?"
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: 제약/스타일
+      description: "PoC는 일관성이 최우선"
+  - type: textarea
+    id: credits
+    attributes:
+      label: 크레딧/라이선스
+      description: "assets/CREDITS.md 업데이트 필요"

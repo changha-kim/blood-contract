@@ -1,32 +1,34 @@
 # PLAN_PACKET (Planner)
 
-## Iteration
-- Week: W1 / W2 / W3 / W4
-- Dates: YYYY-MM-DD ~ YYYY-MM-DD
+## Planning window
+- Iteration: Week N (YYYY-MM-DD ~ YYYY-MM-DD)
+- Pillars: Intent / Synergy / ShortRun / Mobile
+- PoC fixed budget: Enemy 3, MiniBoss 1, Hazard 1(Spike Wall), Rooms 5, Cards 18
 
-## This week focus (1 sentence)
-- 
+## This iteration goals (P0)
+1)
+2)
+3)
 
-## Goals (max 3)
-1.
-2.
-3.
+## Scope cuts (explicit “NOT doing” list)
+- Not doing:
 
-## Non-goals (explicitly NOT doing)
-- 
+## Deliverables (what “done” looks like)
+- Build tag: poc-0.x.y
+- Demo scenario:
+- TCs to run this week: (예: TC04, TC01)
 
-## Deliverable slice (what player can do at end of week)
-- 
+## Issue bundle (to create / move to Ready)
+- [ ] DEV-___ :
+- [ ] QA-___ :
+- [ ] ART-___ :
+- [ ] AUDIO-___ :
 
-## Experiments / TCs to run this week (from Notion Experiments DB)
-- TC01:
-- TC02:
-- TC03:
-- TC04:
+## Risks (top 3) + mitigation
+1)
+2)
+3)
 
-## Required instrumentation (logs)
-- Must log:
-  - commit events
-  - spike wall hits
-  - run duration
-  - synergy tier triggers
+## Notes to Dev (Codex)
+- Allowed folders: res:// (project), tools/, docs/PACKETS
+- Must update: STATE_PACKET “Current build / Known issues / Next actions”

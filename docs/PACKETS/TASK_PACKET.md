@@ -1,24 +1,20 @@
-# TASK_PACKET (Dev)
+# TASK_PACKET (Dev / Codex)
 
-## Task metadata
-- Date:
-- Owner: Dev (Codex)
+## Task
+- Issue: DEV-___
 - Target model: gpt-5.3-codex (big) / gpt-5.3-codex-spark (small)
-- Allowed write paths: (example) src/, tools/
+- Files allowed to modify: (explicit)
 
 ## Read first
 - docs/PACKETS/STATE_PACKET.md
-- docs/PACKETS/PLAN_PACKET.md
-- docs/PACKETS/QA_PACKET.md
+- docs/GDD_SUMMARY.md
+- docs/PACKETS/QA_PACKET.md (relevant TCs)
 
-## Scope
+## Requirements
 - Must:
-  - [ ]
-- Must not:
-  - [ ]
+- Must NOT:
 
-## Acceptance criteria (checklist)
-- [ ] Runs without crash for N=10 runs
-- [ ] Relevant TC(s) pass
-- [ ] Logs written for required metrics
-- [ ] Update STATE_PACKET with what changed + next action
+## Acceptance criteria
+- [ ] Runs without crash (desktop)
+- [ ] Relevant TC passes or logs show improvement
+- [ ] State updated (STATE_PACKET)

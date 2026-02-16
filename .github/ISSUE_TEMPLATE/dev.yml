@@ -1,26 +1,26 @@
-name: Dev (Implementation)
-description: Implement a feature or fix
-title: "[DEV] "
-labels: ["dev"]
+name: "개발 (Dev)"
+description: "구현 작업"
+labels: ["team:dev"]
 body:
   - type: textarea
-    id: spec
+    id: what
     attributes:
-      label: Spec / Reference
-      description: Link to FEATURE doc or PACKETS
+      label: 구현 내용
+      description: "무엇을 만들/수정하나?"
     validations:
       required: true
   - type: textarea
-    id: tasks
+    id: files
     attributes:
-      label: Tasks
-      description: Checklist of concrete steps
+      label: 영향 파일/폴더
+      description: "예: res://scripts/, res://data/"
+  - type: textarea
+    id: ac
+    attributes:
+      label: 완료 기준 (Acceptance Criteria)
     validations:
       required: true
   - type: textarea
-    id: done
+    id: tcs
     attributes:
-      label: Done definition
-      description: Tests, logs, and behaviors that prove completion
-    validations:
-      required: true
+      label: 연결 테스트케이스(TC)

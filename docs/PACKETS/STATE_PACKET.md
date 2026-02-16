@@ -1,34 +1,52 @@
 # STATE_PACKET (Single Source of Truth)
 
-## Current Goal (PoC)
-- Target: 4-week PoC (adjustable)
-- Success criteria (numbers + evidence):
-  - [ ] Commit(잠금)이 플레이어에게 '설명 없이도' 전달된다 (TC01 근거)
-  - [ ] 3초 트레일러 장면(Charger→Commit→유도→Spike Wall) 재현 가능 (TC04 근거)
-  - [ ] 평균 런타임 6~10분 범위에 들어온다 (로그/표본 N=20)
-  - [ ] PoC Content Budget을 모두 포함한다 (Enemies 3 / MiniBoss 1 / Hazard 1 / Rooms 5 / Cards 18)
+> 이 파일은 “에이전트/세션”이 아니라 “프로젝트”가 기억하는 곳입니다.
+> 모든 에이전트(Planner/Critic/Dev/QA/Art/Audio)는 작업 시작 전에 이 파일을 읽고,
+> 작업 종료 시 **아래 4개 섹션만** 업데이트합니다:
+> - Current build / Current focus / Known issues / Next actions
 
-## Current Build
-- Godot: 4.x (fill exact)
-- Platform: Windows (dev), Android target (PoC)
-- Last build tag: poc-0.1.0 (Notion DB shows Feb 14, 2026)
-- Current git branch / commit:
+## Project
+- Name: (프로젝트명)
+- Engine: Godot 4.x
+- Platform target (PoC): Android + Desktop smoke (optional)
+- Repo: (GitHub URL)
 
-## What’s working now
-- 
+## PoC Goal
+- PoC window: 4 weeks (start: 2026-02-16)
+- Success criteria (from GDD_00_ONE_PAGER):
+  1) Commit Combat이 “텔레그래프”로 오해되지 않는다 (TC01/TC02)
+  2) 3초 트레일러 장면(Charger → push → Spike Wall)이 재현된다 (TC04)
+  3) 런 구조가 6~10분에 수렴한다 (TC07)
+  4) 시너지 3단계가 평균 1회 이상 나온다 (TC05)
 
-## Top blockers / risks (top 5)
-1.
-2.
-3.
-4.
-5.
+## Current build
+- Version tag: poc-0.x.y
+- Last successful run: YYYY-MM-DD
+- Last export build: YYYY-MM-DD (Android / Desktop)
 
-## Next actions (next 3)
-1.
-2.
-3.
+## Current focus (this week)
+- Milestone: M? (Week ?)
+- P0 goals (max 3):
+  1)
+  2)
+  3)
 
-## Guardrails (don't break)
-- Immutable pillars: Intent / Synergy / ShortRun / Mobile
-- PoC budget is fixed: no new enemy types, no new rooms beyond 5, no cards beyond 18
+## Known issues (top 5)
+1)
+2)
+3)
+4)
+5)
+
+## Next actions (do next; max 5)
+1)
+2)
+3)
+4)
+5)
+
+## Links
+- GDD summary: docs/GDD_SUMMARY.md
+- Experiments / TCs: docs/PACKETS/QA_PACKET.md
+- Planning: docs/PACKETS/PLAN_PACKET.md
+- Critique: docs/PACKETS/CRITIC_PACKET.md

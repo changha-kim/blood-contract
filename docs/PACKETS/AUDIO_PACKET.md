@@ -1,21 +1,18 @@
-# AUDIO_PACKET (PoC)
+# AUDIO_PACKET (BGM / SFX)
 
-## Audio direction
-- Goal: teach Commit & 성공 피드백을 '소리'로 전달
+## PoC audio goals
+- Teach Commit moment (LOCK cue)
+- Reward “wall-hit success”
+- Signal synergy tier up (esp. tier 3)
 
-## Must-have SFX (PoC)
-- Commit lock cue (distinct, short)
-- Telegraph warning (soft)
-- Dash
-- Spike wall hit (big)
-- Stun/execute
-- Card pick
-- Synergy tier trigger (2/3/4 distinct)
+## Must-have sounds
+- Commit lock SFX
+- Wall hit / stun SFX
+- Dash SFX
+- Synergy tier up SFX
+- Menu click
 
-## BGM (PoC)
-- 1 loop for combat rooms
-- 1 loop for reward/selection (optional)
-
-## Source policy
-- Prefer CC0/CC-BY from trusted libraries; log credits
-- AI music: only if usage rights are OK for your intended distribution
+## BGM
+- 1 loop for combat/run
+- 1 loop for menu
+- Volume sliders: BGM/SFX

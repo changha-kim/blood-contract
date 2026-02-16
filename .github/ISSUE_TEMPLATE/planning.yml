@@ -1,0 +1,28 @@
+name: "기획 (Planner)"
+description: "기획/밸런스/레벨/경제 등 문서 기반 작업"
+labels: ["team:planning"]
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: 목표/배경
+      description: "왜 필요한가? 어떤 가설을 검증하나?"
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: 범위 (포함/제외)
+      description: "PoC에서 포함/제외를 명확히"
+  - type: textarea
+    id: ac
+    attributes:
+      label: 완료 기준 (Acceptance Criteria)
+      description: "측정 가능하게"
+    validations:
+      required: true
+  - type: textarea
+    id: tcs
+    attributes:
+      label: 연결 테스트케이스(TC)
+      description: "TC01~TC10 중 연결"
