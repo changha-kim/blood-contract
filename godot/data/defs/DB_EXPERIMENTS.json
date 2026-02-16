@@ -1,0 +1,64 @@
+[
+  {
+    "id": "TC-M0-01",
+    "name": "Boot: MainMenu shows and Start loads TestArena",
+    "poc_scope": true,
+    "steps": [
+      "Launch the project",
+      "Verify MainMenu is visible",
+      "Press Start (Test Arena)",
+      "Verify TestArena loads",
+      "Press Back to Main Menu"
+    ],
+    "expected": [
+      "No errors in output",
+      "Scene transition works both ways"
+    ]
+  },
+  {
+    "id": "TC-M0-02",
+    "name": "DataRepo: loads notion_export JSON tables at startup",
+    "poc_scope": true,
+    "steps": [
+      "Launch the project",
+      "Ensure no warnings like DataRepo: failed to parse ..."
+    ],
+    "expected": [
+      "DataRepo.tables contains DB_COMBAT_MATH / DB_CONTENT_ENEMIES / DB_SYNERGY_TABLE (loaded from res://data/defs/)"
+    ]
+  },
+  {
+    "id": "TC-M1-01",
+    "name": "Player can move, attack, dash; debug HUD shows run timer",
+    "poc_scope": true,
+    "steps": [
+      "Start TestArena",
+      "Move with WASD/Arrows",
+      "Hold F to attack (melee pulse)",
+      "Press Space to dash (0.75s cooldown, 0.12s invuln)",
+      "Observe DebugHUD updating (FPS, run time)"
+    ],
+    "expected": [
+      "Movement feels responsive",
+      "Attack repeats ~3/sec",
+      "Dash has brief invulnerability and cooldown"
+    ]
+  },
+  {
+    "id": "TC01",
+    "name": "Commit understanding (no tutorial) — Slasher Telegraph→Commit→Execute→Recover",
+    "poc_scope": true,
+    "steps": [
+      "Start TestArena (spawns 1 Slasher)",
+      "Observe orange telegraph line (Telegraph)",
+      "Observe red thicker telegraph (Commit/LOCK)",
+      "Observe short execute window where damage can occur",
+      "Repeat several cycles while moving around"
+    ],
+    "expected": [
+      "Commit phase is visually distinct (red + thicker)",
+      "Enemy facing does not change after commit",
+      "Player can learn timing via repeated cycles"
+    ]
+  }
+]

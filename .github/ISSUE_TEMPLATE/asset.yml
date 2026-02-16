@@ -1,0 +1,26 @@
+name: Art/Audio (Assets)
+description: Art, UI, VFX, SFX, Music tasks
+title: "[ASSET] "
+labels: ["asset"]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: What is needed
+      description: List assets needed, with where they appear in the game
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Source / License
+      description: CC0/CC-BY link, or AI generation policy
+    validations:
+      required: true
+  - type: textarea
+    id: done
+    attributes:
+      label: Done definition
+      description: In-game verification (readability test)
+    validations:
+      required: true

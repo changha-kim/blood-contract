@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dspike_wall_0001"]
+
+[ext_resource type="Script" path="res://scripts/hazards/spike_wall.gd" id="1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(32, 96)
+
+[node name="SpikeWall" type="StaticBody2D"]
+script = ExtResource("1")
+wall_id = "SPIKE_WALL_1"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1")
+
+[node name="Trigger" type="Area2D" parent="."]
+monitoring = true
+monitorable = true
+
+[node name="TriggerCollision" type="CollisionShape2D" parent="Trigger"]
+shape = SubResource("RectangleShape2D_1")
+
+[node name="Sprite" type="ColorRect" parent="."]
+color = Color(0.8, 0.8, 0.9, 1)
+size = Vector2(32, 96)
+position = Vector2(-16, -48)

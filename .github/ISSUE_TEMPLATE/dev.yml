@@ -1,0 +1,26 @@
+name: Dev (Implementation)
+description: Implement a feature or fix
+title: "[DEV] "
+labels: ["dev"]
+body:
+  - type: textarea
+    id: spec
+    attributes:
+      label: Spec / Reference
+      description: Link to FEATURE doc or PACKETS
+    validations:
+      required: true
+  - type: textarea
+    id: tasks
+    attributes:
+      label: Tasks
+      description: Checklist of concrete steps
+    validations:
+      required: true
+  - type: textarea
+    id: done
+    attributes:
+      label: Done definition
+      description: Tests, logs, and behaviors that prove completion
+    validations:
+      required: true

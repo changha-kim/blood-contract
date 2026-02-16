@@ -1,0 +1,19 @@
+{
+  "player": {
+    "max_hp": 100,
+    "base_damage": 8,
+    "attack_rate_per_sec": 3.0,
+    "dash_cd_sec": 0.75,
+    "dash_invuln_sec": 0.12,
+    "move_speed": 360.0,
+    "dash_speed": 900.0,
+    "dash_duration_sec": 0.12
+  },
+  "hazards": {
+    "spike_wall": {
+      "enemy_damage_ratio": 0.20,
+      "player_damage_ratio": 0.08,
+      "icd_sec": 0.8
+    }
+  }
+}

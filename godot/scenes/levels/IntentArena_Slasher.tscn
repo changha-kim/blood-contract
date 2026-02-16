@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1k0u0r7m4v2p"]
+
+[ext_resource type="PackedScene" uid="uid://bcl2j6g6n47f5" path="res://scenes/player/Player.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://c3sv0b7g3c8m1" path="res://scenes/enemies/ENY_Slasher.tscn" id="2"]
+[ext_resource type="Script" path="res://scripts/levels/intent_arena_slasher.gd" id="3"]
+
+[node name="IntentArena_Slasher" type="Node2D"]
+script = ExtResource("3")
+
+[node name="Floor" type="ColorRect" parent="."]
+color = Color(0.92, 0.92, 0.92, 1)
+size = Vector2(1280, 720)
+
+[node name="Player" parent="." instance=ExtResource("1")]
+position = Vector2(320, 360)
+
+[node name="Slasher" parent="." instance=ExtResource("2")]
+position = Vector2(920, 360)
+target_path = NodePath("../Player")

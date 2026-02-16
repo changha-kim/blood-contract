@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://dspike_arena_0001"]
+
+[ext_resource type="Script" path="res://scripts/levels/spike_arena_gauntlet_lane.gd" id="0"]
+[ext_resource type="PackedScene" uid="uid://bcl2j6g6n47f5" path="res://scenes/player/Player.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://dcharger_0001" path="res://scenes/enemies/Charger.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://dspike_wall_0001" path="res://scenes/hazards/SpikeWall.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://c5sy0m3i6a0q1" path="res://scenes/hud/DebugHUD.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://d4wq2s3y0m2hc" path="res://scenes/hud/HUDCommitWidget.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://clt7p3m18r5so" path="res://scenes/ui/VirtualJoystick.tscn" id="6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(40, 1400)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2"]
+size = Vector2(760, 40)
+
+[node name="SpikeArena_GauntletLane" type="Node2D"]
+script = ExtResource("0")
+
+[node name="Floor" type="ColorRect" parent="."]
+color = Color(0.06, 0.06, 0.07, 1)
+size = Vector2(1080, 1920)
+
+[node name="LeftWall" type="StaticBody2D" parent="."]
+position = Vector2(160, 960)
+
+[node name="LeftWallCol" type="CollisionShape2D" parent="LeftWall"]
+shape = SubResource("RectangleShape2D_1")
+
+[node name="RightWall" type="StaticBody2D" parent="."]
+position = Vector2(920, 960)
+
+[node name="RightWallCol" type="CollisionShape2D" parent="RightWall"]
+shape = SubResource("RectangleShape2D_1")
+
+[node name="BackWall" type="StaticBody2D" parent="."]
+position = Vector2(540, 260)
+
+[node name="BackWallCol" type="CollisionShape2D" parent="BackWall"]
+shape = SubResource("RectangleShape2D_2")
+
+[node name="Player" parent="." instance=ExtResource("1")]
+position = Vector2(540, 1500)
+
+[node name="Charger" parent="." instance=ExtResource("2")]
+position = Vector2(540, 560)
+
+[node name="SpikeWallA" parent="." instance=ExtResource("3")]
+position = Vector2(390, 930)
+wall_id = "SPIKE_WALL_A"
+
+[node name="SpikeWallB" parent="." instance=ExtResource("3")]
+position = Vector2(690, 930)
+wall_id = "SPIKE_WALL_B"
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="DebugHUD" parent="UILayer" instance=ExtResource("4")]
+room_name = "ROOM_GAUNTLET_LANE"
+
+[node name="HUDCommitWidget" parent="UILayer" instance=ExtResource("5")]
+
+[node name="VirtualJoystick" parent="UILayer" instance=ExtResource("6")]

@@ -1,0 +1,9 @@
+{
+  "skill1": {
+    "cooldown_sec": 2.5,
+    "force": 950.0,
+    "duration": 0.18,
+    "range_px": 70.0,
+    "width_px": 90.0
+  }
+}

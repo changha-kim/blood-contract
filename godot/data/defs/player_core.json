@@ -1,0 +1,13 @@
+{
+  "move_speed": 340.0,
+  "attack": {
+    "hitbox_active_sec": 0.09,
+    "auto_aim_range_px": 220.0
+  },
+  "dash": {
+    "speed": 900.0,
+    "duration_sec": 0.12,
+    "cooldown_sec": 0.85,
+    "invuln_sec": 0.18
+  }
+}

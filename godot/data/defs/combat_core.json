@@ -1,0 +1,8 @@
+{
+  "player": {
+    "base_damage": 8
+  },
+  "hurtbox": {
+    "i_frame_sec_on_hit": 0.05
+  }
+}

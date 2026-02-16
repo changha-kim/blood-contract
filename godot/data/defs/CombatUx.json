@@ -1,0 +1,5 @@
+{
+  "commitMicroSlowEnabled": true,
+  "commitMicroSlowDuration": 0.1,
+  "commitMicroSlowTimeScale": 0.1
+}

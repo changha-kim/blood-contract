@@ -1,0 +1,29 @@
+﻿Name,Asset Link,Complexity(1-5),Difficulty(1-5),Implementation Link,Last Verified Build,Patron,PoC Scope,Related Experiments,Related Systems,Status,Tags,Type
+HZD | Spike Wall,,2,1,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Neutral,Yes,EXP | PoC-001 | First Internal Playtest (EXP%20PoC-001%20First%20Internal%20Playtest%20307777a0189881488400f92ea9501dec.csv),SYS | Intent Combat (Telegraph→Commit→Execute) (SYS%20Intent%20Combat%20(Telegraph%E2%86%92Commit%E2%86%92Execute)%20307777a01898814a9d3df5820fce8fe9.csv),Spec,"INTENT, KNOCKBACK",Hazard
+ENY | Slasher (Inquisitor Bladesman),,2,2,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Neutral,Yes,,SYS | Intent Combat (Telegraph→Commit→Execute) (SYS%20Intent%20Combat%20(Telegraph%E2%86%92Commit%E2%86%92Execute)%20307777a01898814a9d3df5820fce8fe9.csv),Spec,INTENT,Enemy
+ENY | Arbalist (Inquisitor Crossbow),,2,2,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Neutral,Yes,,SYS | Intent Combat (Telegraph→Commit→Execute) (SYS%20Intent%20Combat%20(Telegraph%E2%86%92Commit%E2%86%92Execute)%20307777a01898814a9d3df5820fce8fe9.csv),Spec,INTENT,Enemy
+ENY | Charger (Inquisitor Ram),,3,3,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Neutral,Yes,,SYS | Intent Combat (Telegraph→Commit→Execute) (SYS%20Intent%20Combat%20(Telegraph%E2%86%92Commit%E2%86%92Execute)%20307777a01898814a9d3df5820fce8fe9.csv),Spec,"INTENT, KNOCKBACK",Enemy
+BOSS | The Bailiff (MiniBoss),,4,4,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Neutral,Yes,,SYS | Intent Combat (Telegraph→Commit→Execute) (SYS%20Intent%20Combat%20(Telegraph%E2%86%92Commit%E2%86%92Execute)%20307777a01898814a9d3df5820fce8fe9.csv),Spec,"INTENT, KNOCKBACK",Boss
+ROOM | Thorn Hall,,1,1,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Neutral,Yes,,SYS | Intent Combat (Telegraph→Commit→Execute) (SYS%20Intent%20Combat%20(Telegraph%E2%86%92Commit%E2%86%92Execute)%20307777a01898814a9d3df5820fce8fe9.csv),Spec,KNOCKBACK,Room
+ROOM | Crossfire Corner,,2,2,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Neutral,Yes,,SYS | Intent Combat (Telegraph→Commit→Execute) (SYS%20Intent%20Combat%20(Telegraph%E2%86%92Commit%E2%86%92Execute)%20307777a01898814a9d3df5820fce8fe9.csv),Spec,"INTENT, KNOCKBACK",Room
+ROOM | Pillar Yard,,2,2,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Neutral,Yes,,SYS | Intent Combat (Telegraph→Commit→Execute) (SYS%20Intent%20Combat%20(Telegraph%E2%86%92Commit%E2%86%92Execute)%20307777a01898814a9d3df5820fce8fe9.csv),Spec,INTENT,Room
+ROOM | Gauntlet Lane,,2,3,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Neutral,Yes,,SYS | Intent Combat (Telegraph→Commit→Execute) (SYS%20Intent%20Combat%20(Telegraph%E2%86%92Commit%E2%86%92Execute)%20307777a01898814a9d3df5820fce8fe9.csv),Spec,KNOCKBACK,Room
+ROOM | Ledger Court,,3,3,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Neutral,Yes,,SYS | Intent Combat (Telegraph→Commit→Execute) (SYS%20Intent%20Combat%20(Telegraph%E2%86%92Commit%E2%86%92Execute)%20307777a01898814a9d3df5820fce8fe9.csv),Spec,"INTENT, KNOCKBACK",Room
+CARD | Blood-01 | 피의 도장,,2,2,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Blood,Yes,,,Spec,BLEED,Card
+CARD | Blood-02 | 도살자의 서약,,3,2,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Blood,Yes,,,Spec,"BLEED, EXECUTE",Card
+CARD | Blood-03 | 피의 분출,,3,3,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Blood,Yes,,,Spec,EXECUTE,Card
+CARD | Blood-04 | 광기의 대시,,3,3,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Blood,Yes,,,Spec,"BLEED, KNOCKBACK",Card
+CARD | Blood-05 | 피로 쓴 계약서,,2,2,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Blood,Yes,,,Spec,BLEED,Card
+CARD | Blood-06 | 사형 집행의 연서,,2,3,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Blood,Yes,,,Spec,EXECUTE,Card
+CARD | Iron-01 | 강철 가죽,,2,2,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Iron,Yes,,,Spec,SHIELD,Card
+CARD | Iron-02 | 가시의 갑주,,3,3,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Iron,Yes,,,Spec,"SHIELD, THORN",Card
+CARD | Iron-03 | 벽의 충성,,2,2,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Iron,Yes,,,Spec,THORN,Card
+CARD | Iron-04 | 충격의 망치,,2,3,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Iron,Yes,,,Spec,KNOCKBACK,Card
+CARD | Iron-05 | 수호자의 서약,,3,3,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Iron,Yes,,,Spec,"INTENT, SHIELD",Card
+CARD | Iron-06 | 철의 법전,,3,3,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Iron,Yes,,,Spec,"SHIELD, THORN",Card
+CARD | Ash-01 | 재의 낙인,,2,2,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Ash,Yes,,,Spec,CURSE,Card
+CARD | Ash-02 | 연쇄의 속삭임,,3,3,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Ash,Yes,,,Spec,"CHAIN, CURSE",Card
+CARD | Ash-03 | 불길한 예고,,3,3,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Ash,Yes,,,Spec,"CURSE, INTENT",Card
+CARD | Ash-04 | 사자의 실,,2,2,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Ash,Yes,,,Spec,CHAIN,Card
+CARD | Ash-05 | 계약 파기,,3,3,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Ash,Yes,,,Spec,"CURSE, KNOCKBACK",Card
+CARD | Ash-06 | 강제 확정,,4,4,,poc-0.1.0 (poc-0%201%200%20307777a0189881048febcef792b7153f.csv),Ash,Yes,,,Spec,"CURSE, INTENT",Card

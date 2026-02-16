@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3sv0b7g3c8m1"]
+
+[ext_resource type="PackedScene" uid="uid://c1y1p0s0b8gny" path="res://scenes/enemies/EnemyBase.tscn" id="1"]
+[ext_resource type="Script" path="res://scripts/enemies/enemy_slasher.gd" id="2"]
+
+[node name="ENY_Slasher" instance=ExtResource("1")]
+script = ExtResource("2")
+enemy_id = "ENY_SLASHER"

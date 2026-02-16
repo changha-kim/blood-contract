@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://bcl2j6g6n47f5"]
+
+[ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/components/health_component.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/components/hurtbox.gd" id="3"]
+[ext_resource type="Script" path="res://scripts/components/hitbox.gd" id="4"]
+[ext_resource type="Script" path="res://scripts/player/intent_state_machine.gd" id="5"]
+[ext_resource type="Script" path="res://scripts/player/commit_system.gd" id="6"]
+[ext_resource type="Script" path="res://scripts/components/knockback_component.gd" id="7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1"]
+radius = 12.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2")
+max_hp = 100
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("3")
+faction = "PLAYER"
+health_path = NodePath("../Health")
+
+[node name="HurtboxCollision" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_1")
+
+[node name="Attack" type="Node2D" parent="."]
+
+[node name="Hitbox" type="Area2D" parent="Attack"]
+position = Vector2(18, 0)
+script = ExtResource("4")
+damage = 8
+owner_faction = "PLAYER"
+monitoring = false
+
+[node name="HitboxCollision" type="CollisionShape2D" parent="Attack/Hitbox"]
+shape = SubResource("CircleShape2D_1")
+
+[node name="IntentStateMachine" type="Node" parent="."]
+script = ExtResource("5")
+
+[node name="CommitSystem" type="Node" parent="."]
+script = ExtResource("6")
+
+[node name="Knockback" type="Node" parent="."]
+script = ExtResource("7")
+knockback_resistance = 0.0
+knockback_immunity_time = 0.4
+
+[node name="Sprite" type="ColorRect" parent="."]
+color = Color(0.9, 0.1, 0.1, 1)
+size = Vector2(24, 24)
+position = Vector2(-12, -12)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = true

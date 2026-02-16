@@ -1,0 +1,25 @@
+name: QA (Repro / Test case)
+description: Add test cases, reproduce bugs, verify fixes
+title: "[QA] "
+labels: ["qa"]
+body:
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps / Repro
+      description: How to reproduce or how to test
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected vs Actual
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Logs / video / screenshots / metrics
+    validations:
+      required: false

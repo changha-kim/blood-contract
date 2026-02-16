@@ -1,0 +1,28 @@
+{
+  "id": "combat_tuning_poc_0_1_1",
+  "player": {
+    "move_speed": 340.0,
+    "attack": {
+      "hitbox_active_sec": 0.09,
+      "auto_aim_range_px": 220.0
+    },
+    "dash": {
+      "speed": 900.0,
+      "duration_sec": 0.12,
+      "cooldown_sec": 0.85,
+      "invuln_sec": 0.18
+    }
+  },
+  "slasher": {
+    "move_speed": 180.0,
+    "engage_range_px": 150.0,
+    "intent": {
+      "telegraph_sec": 0.55,
+      "lock_at_sec": 0.35,
+      "execute_sec": 0.14,
+      "recover_sec": 0.55,
+      "attack_range_px": 52.0,
+      "hitbox_active_sec": 0.1
+    }
+  }
+}

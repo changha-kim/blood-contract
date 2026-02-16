@@ -1,0 +1,6 @@
+{
+  "ENY_SLASHER": {"max_hp": 120, "contact_damage": 10},
+  "ENY_ARBALIST": {"max_hp": 90, "contact_damage": 8},
+  "ENY_CHARGER": {"max_hp": 180, "contact_damage": 12},
+  "BOSS_BAILIFF": {"max_hp": 720, "contact_damage": 18}
+}

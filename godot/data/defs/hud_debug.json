@@ -1,0 +1,10 @@
+{
+  "enabled": true,
+  "fields": {
+    "fps": true,
+    "run_timer": true,
+    "scene_name": true,
+    "player_hp": true,
+    "dash_cd": true
+  }
+}

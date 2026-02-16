@@ -1,0 +1,10 @@
+{
+  "id": "ux_tuning_m2",
+  "mobile": {
+    "commit_button_min_size_px": [220, 220],
+    "joystick_radius_px": 170,
+    "safe_margin_px": 32,
+    "haptics_enabled": true,
+    "lock_haptic_duration_ms": 45
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "HZD_SPIKE_WALL": {
+    "enemy_damage_ratio": 0.20,
+    "player_damage_ratio": 0.08,
+    "stun_time": 0.35,
+    "player_stun_time": 0.0,
+    "internal_cd_sec": 0.8,
+    "induced_commit_window_sec": 1.5,
+    "player_knockback_force": 260.0,
+    "player_knockback_duration": 0.12
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "ENY_CHARGER": {
+    "bull_charge": {
+      "telegraph_sec": 0.55,
+      "commit_sec": 0.20,
+      "execute_sec": 0.65,
+      "recover_sec": 0.90,
+      "recover_sec_on_wall_hit": 1.20,
+      "telegraph_length_px": 600.0,
+      "charge_speed": 820.0,
+      "charge_hitbox_range_px": 28.0
+    },
+    "ai": {
+      "corridor_half_width_px": 70.0,
+      "min_distance_px": 120.0,
+      "max_distance_px": 720.0
+    },
+    "knockback_resistance": 0.25
+  },
+  "ENY_SLASHER": {
+    "lunge_slash": {
+      "shape": "line",
+      "damage": 10,
+      "telegraph_sec": 0.55,
+      "commit_sec": 0.20,
+      "execute_sec": 0.18,
+      "recover_sec": 0.65,
+      "telegraph_length_px": 350.0,
+      "dash_speed": 760.0
+    },
+    "ai": {
+      "move_speed": 175.0,
+      "start_range_px": 220.0
+    }
+  }
+}
