@@ -7,7 +7,7 @@
 - `team:planning`, `team:dev`, `team:qa`, `team:design`
 - `prio:P0|P1|P2`
 - `size:S|M|L`
-- `tc:TC01` ... `tc:TC10`
+- `tc-TC01` ... `tc-TC10`
 
 ## Week gates
 
