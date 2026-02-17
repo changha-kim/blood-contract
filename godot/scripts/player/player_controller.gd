@@ -10,11 +10,13 @@ class_name PlayerController
 var move_speed: float = 340.0
 var hitbox_active_sec: float = 0.09
 var auto_aim_range_px: float = 220.0
+var attack_visual_length_px: float = 96.0
+var attack_visual_sec: float = 0.08
 
 var dash_speed: float = 900.0
 var dash_duration_sec: float = 0.12
-var dash_cooldown_sec: float = 0.85
-var dash_invuln_sec: float = 0.18
+var dash_cooldown_sec: float = 0.75
+var dash_invuln_sec: float = 0.12
 
 # State
 var move_dir: Vector2 = Vector2.ZERO
@@ -23,6 +25,7 @@ var _was_moving: bool = false
 
 var _dash_time_left: float = 0.0
 var _dash_cooldown_left: float = 0.0
+var _dash_invuln_left: float = 0.0
 var _dash_dir: Vector2 = Vector2.RIGHT
 
 func _ready() -> void:
@@ -40,6 +43,14 @@ func _physics_process(delta: float) -> void:
 
 	if _dash_cooldown_left > 0.0:
 		_dash_cooldown_left = maxf(0.0, _dash_cooldown_left - delta)
+
+	if _dash_invuln_left > 0.0:
+		_dash_invuln_left = maxf(0.0, _dash_invuln_left - delta)
+		if _dash_invuln_left <= 0.0 and hurtbox.invulnerable:
+			hurtbox.invulnerable = false
+			Telemetry.log_event("player_dash_invuln_end", {
+				"run_id": RunManager.current_run_id,
+			})
 
 	if Input.is_action_just_pressed("attack_btn"):
 		_do_attack()
@@ -102,6 +113,7 @@ func _do_attack() -> void:
 			_facing_dir = dir.normalized()
 
 	attack_root.rotation = _facing_dir.angle()
+	_show_attack_debug_line(target)
 	Telemetry.log_event("player_attack", {
 		"run_id": RunManager.current_run_id,
 		"target_id": target.entity_id if target != null else "",
@@ -112,24 +124,48 @@ func _try_dash() -> void:
 	if _dash_time_left > 0.0:
 		return
 	if _dash_cooldown_left > 0.0:
+		print("Dash CD: %.2fs" % _dash_cooldown_left)
 		return
 
 	_dash_cooldown_left = dash_cooldown_sec
 	_dash_time_left = dash_duration_sec
 	_dash_dir = (move_dir if move_dir.length_squared() > 0.0001 else _facing_dir).normalized()
 
-	# Invulnerability: explicit flag + extra i-frames to cover any overlap.
-	hurtbox.invulnerable = true
-	hurtbox.grant_i_frames(dash_invuln_sec)
+	# Invulnerability window is independent from dash duration.
+	_dash_invuln_left = maxf(0.0, dash_invuln_sec)
+	hurtbox.invulnerable = _dash_invuln_left > 0.0
+	if _dash_invuln_left > 0.0:
+		hurtbox.grant_i_frames(_dash_invuln_left)
+	print("Dash CD: %.2fs" % _dash_cooldown_left)
 
 	Telemetry.log_event("player_dash", {
 		"run_id": RunManager.current_run_id,
 		"dir_x": _dash_dir.x,
 		"dir_y": _dash_dir.y,
 	})
+	Telemetry.log_event("player_dash_invuln_start", {
+		"run_id": RunManager.current_run_id,
+		"invuln_sec": dash_invuln_sec,
+	})
 
 func _end_dash() -> void:
-	hurtbox.invulnerable = false
+	pass
+
+func _show_attack_debug_line(target: Hurtbox) -> void:
+	var line := Line2D.new()
+	line.default_color = Color(1.0, 0.2, 0.2, 0.9)
+	line.width = 3.0
+	line.z_index = 40
+	var end_local := _facing_dir * attack_visual_length_px
+	if target != null:
+		end_local = to_local(target.global_position)
+	if end_local.length_squared() < 1.0:
+		end_local = _facing_dir * attack_visual_length_px
+	line.points = PackedVector2Array([Vector2.ZERO, end_local])
+	add_child(line)
+	await get_tree().create_timer(attack_visual_sec).timeout
+	if is_instance_valid(line):
+		line.queue_free()
 
 func _hitbox_pulse(duration_sec: float) -> void:
 	hitbox.monitoring = true

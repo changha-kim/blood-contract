@@ -32,12 +32,13 @@
 
 ## Known issues (top 5)
 1) CLI environment for this task has no `godot` binary in `PATH`, so desktop smoke cannot be rerun from terminal.
-2) `godot/export_presets.cfg` is tracked by repo policy; only user-local export preset data is ignored.
+2) CLI environment for this task has no `gdlint`/`gdformat` binaries in `PATH`; lint/format checks are delegated to GitHub Actions.
+3) Player attack is currently a placeholder hitbox + debug slash line, not final combat VFX.
 
 ## Next actions (do next; max 5)
-1) Start **DEV-002**: implement TC04 core route (Charger push into Spike Wall) on baseline.
-2) Run **QA-001** logging pass for `run_start`, `commit_enter`, `wall_hit`, and verify in `user://logs/`.
-3) Validate **TC01 minimum** commit-vs-telegraph readability and record week-1 outcomes in `docs/QA_REPORT.md`.
+1) Run QA smoke for DEV-002 in editor: verify 60s movement stability, dash cooldown/invuln behavior, and attack visibility in `TestArena` and `IntentArena_Slasher`.
+2) Execute Week 1 log validation for `run_start`, `commit_enter`, and `wall_hit` events and append results to `docs/QA_REPORT.md`.
+3) Tune player combat feel values (`move_speed`, attack placeholder timing/range, dash speed) using `godot/data/defs/player_core.json` after QA findings.
 
 ## Links
 - GDD summary: docs/GDD_SUMMARY.md
