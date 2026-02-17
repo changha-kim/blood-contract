@@ -16,12 +16,21 @@
 - Log: `user://logs/run_2026-02-17T10-54-29.jsonl`
 - Result: **0 / 10 success** (timeout=10)
 
+**Run C**
+- Runner: Godot 4.6 console (`--headless`)
+- Flags: `--tc04-auto=10 --tc04-timeout=6.0`
+- Log: `user://logs/run_2026-02-17T11-49-46.jsonl`
+- Result: **10 / 10 success**
+  - Note: these successes are via autorun fallback ("execute" reached), not spike-wall damage.
+
 Interpretation:
 - Autorun loop + logging works.
-- Current bait heuristic fails to induce `SpikeWall.induced_success` even with 6s timeout.
+- Strict success (`SpikeWall` damage / induced_success) is still not observed in headless.
+- Fallback success provides a stable smoke signal that TC04 loop reaches execute.
 
 Next:
-- Improve bait logic (positioning + movement) OR relax/replace the success trigger for automation.
+- Keep fallback for automation, but treat real TC04 success as: `enemy_wall_hit` or `induced_success`.
+- To measure real success rate, run manual TC04 (F5/F6) or improve bait logic further.
 
 ### Environment
 - Godot: 4.6.stable (console, `--headless`)
