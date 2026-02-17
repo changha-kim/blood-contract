@@ -3,6 +3,8 @@ extends Node2D
 # TC04 arena: Gauntlet Lane (Charger + Spike Wall)
 # Provides lightweight attempt logging + reset loop for reproducibility counting.
 
+const TC04Auto := preload("res://scripts/levels/_tc04_auto.gd")
+
 @onready var player: PlayerController = $Player
 @onready var charger: ChargerEnemy = $Charger
 @onready var spike_wall_a: SpikeWall = $SpikeWallA
