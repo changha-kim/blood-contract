@@ -127,9 +127,9 @@ func _auto_next_attempt() -> void:
 	GameApp.tc04_auto_remaining = int(GameApp.tc04_auto_remaining) - 1
 	_auto_success_wall_id = ""
 
-	# Heuristic: place player near a wall to bait the charger.
+	# Deterministic bait sweep: vary position by attempt to discover working setups.
 	if player != null:
-		player.global_position = TC04Auto.pick_bait_position(spike_wall_a, spike_wall_b)
+		player.global_position = TC04Auto.pick_bait_position(spike_wall_a, spike_wall_b, _attempt_id + 1)
 
 	var timeout_sec := 6.0
 	if GameApp != null:
