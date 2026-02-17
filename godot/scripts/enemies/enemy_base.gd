@@ -64,6 +64,9 @@ func _physics_process(delta: float) -> void:
 func get_intent_id() -> String:
 	return _intent_id
 
+func is_in_execute() -> bool:
+	return phase == Phase.EXECUTE
+
 # ---- Phase machine ----
 func _advance_phase() -> void:
 	match phase:

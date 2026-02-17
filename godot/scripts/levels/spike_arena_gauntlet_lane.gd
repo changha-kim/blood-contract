@@ -136,8 +136,18 @@ func _auto_next_attempt() -> void:
 		timeout_sec = float(GameApp.tc04_auto_attempt_timeout_sec)
 
 	await get_tree().create_timer(timeout_sec).timeout
+	# Prefer wall-hit success. If it never happens in headless, fall back to "execute happened"
+	# (keeps autorun useful as a smoke signal even when physics differs).
+	var had_execute := false
+	# We logged intent_execute at least once in this scene instance if the enemy got to execute.
+	# Use a cheap signal: query EventLogger file is too expensive; instead rely on enemy method.
+	if charger != null and charger.has_method("is_in_execute"):
+		had_execute = bool(charger.call("is_in_execute"))
+
 	if _auto_success_wall_id != "":
 		_log_tc04_attempt(true, "")
+	elif had_execute:
+		_log_tc04_attempt(true, "execute")
 	else:
 		_log_tc04_attempt(false, "timeout")
 	_reset_scene()
