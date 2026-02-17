@@ -65,22 +65,44 @@ func _parse_cmdline_flags() -> void:
 	if args.is_empty():
 		# Fallback (some launchers may not preserve user args correctly).
 		args = OS.get_cmdline_args()
+
 	# TC04 auto-run
 	# Examples:
 	# - --tc04-auto (defaults to 10)
 	# - --tc04-auto=10
 	# - --tc04-timeout=6.0
 	# - --tc04-no-quit
-	if CmdlineParse.has_flag(args, "--tc04-auto"):
+	if _has_flag(args, "--tc04-auto"):
 		tc04_auto_attempts = 10
-		var v := CmdlineParse.get_flag_value(args, "--tc04-auto")
+		var v: String = _get_flag_value(args, "--tc04-auto")
 		if v != "":
 			tc04_auto_attempts = maxi(0, int(v))
-	var t := CmdlineParse.get_flag_value(args, "--tc04-timeout")
+	var t: String = _get_flag_value(args, "--tc04-timeout")
 	if t != "":
 		tc04_auto_attempt_timeout_sec = maxf(0.5, float(t))
-	if CmdlineParse.has_flag(args, "--tc04-no-quit"):
+	if _has_flag(args, "--tc04-no-quit"):
 		tc04_auto_quit_on_finish = false
+
+func _get_flag_value(args: PackedStringArray, key: String) -> String:
+	# Supports:
+	# - --key=value
+	# - --key value
+	for i in range(args.size()):
+		var a: String = args[i]
+		if a.begins_with(key + "="):
+			return a.substr((key + "=").length())
+		if a == key and i + 1 < args.size():
+			return str(args[i + 1])
+	return ""
+
+func _has_flag(args: PackedStringArray, key: String) -> bool:
+	for a in args:
+		var s := str(a)
+		if s == key:
+			return true
+		if s.begins_with(key + "="):
+			return true
+	return false
 
 func _get_tree_safe() -> SceneTree:
 	var tree := get_tree()
