@@ -37,6 +37,8 @@ func log_event(event_name: String, payload: Dictionary = {}) -> void:
 	for k in payload.keys():
 		evt[k] = payload[k]
 	_file.store_line(JSON.stringify(evt))
+	# For PoC/automation reliability: flush per event so logs exist even if process is killed.
+	_file.flush()
 
 func _flush_and_close() -> void:
 	if _file != null:
