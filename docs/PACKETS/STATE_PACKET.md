@@ -19,7 +19,7 @@
   4) Synergy tier-3 appears at least once on average (TC05)
 
 ## Current build
-- Version tag: **poc-0.1.1 (LOG-001 alias events added)**
+- Version tag: **poc-0.1.1+tc01-lock-anticipation (local)**
 - Last successful run: **2026-02-16** (Desktop smoke, in-editor; terminal rerun unavailable in this task environment)
 - Last export build: **TBD** (Android / Desktop)
 
@@ -27,21 +27,20 @@
 - Milestone: **M1 (Week 1)**
 - P0 goals (max 3):
   1) Complete TC04 route core (Charger knockback -> Spike Wall)
-  2) Implement minimum commit-vs-telegraph UX readability (TC01/TC02)
+  2) Improve TC01 readability with clearer pre-execute anticipation on Slasher commit
   3) Validate Week 1 logging schema in run logs (`run_start` + `commit_enter` + `wall_hit`, while legacy aliases remain)
 
 ## Known issues (top 5)
 1) CLI environment for this task has no `godot` binary in `PATH`, so desktop smoke cannot be rerun from terminal.
 2) CLI environment for this task has no `gdlint`/`gdformat` binaries in `PATH`; lint/format checks are delegated to GitHub Actions.
 3) Player attack is currently a placeholder hitbox + debug slash line, not final combat VFX.
+4) TC01 anticipation cue was implemented as minimal Slasher sprite pullback/squash readability motion; in-editor verification is still pending in this environment.
 
 ## Next actions (do next; max 5)
-1) Run TC04 session in editor using MainMenu → **TC04 (Spike Arena)**.
-   - Do 10 attempts; mark **F5=success**, **F6=fail** (Shift=control, Ctrl=readability, Alt=rules); verify `tc04_attempt` logs.
+1) Verify TC01 cue in editor on `IntentArena_Slasher`: confirm pre-execute readability improved for novice observer without changing combat feel.
 2) Run QA smoke for DEV-002 in editor: verify 60s movement stability, dash cooldown/invuln behavior, and attack visibility in `TestArena` and `IntentArena_Slasher`.
 3) Execute Week 1 log validation for `run_start`, `commit_enter`, and `wall_hit` events (and confirm `intent_commit` + `spikewall_hit` still coexist) and append results to `docs/QA_REPORT.md`.
-4) Tune player combat feel values (`move_speed`, attack placeholder timing/range, dash speed) using `godot/data/defs/player_core.json` after QA findings.
-
+4) Run TC04 session in editor using MainMenu -> **TC04 (Spike Arena)** and verify `tc04_attempt` logs.
 ## Links
 - GDD summary: docs/GDD_SUMMARY.md
 - Experiments / TCs: docs/PACKETS/QA_PACKET.md
