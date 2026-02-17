@@ -5,13 +5,23 @@ extends Node2D
 
 @onready var player: PlayerController = $Player
 @onready var charger: ChargerEnemy = $Charger
+@onready var spike_wall_a: SpikeWall = $SpikeWallA
+@onready var spike_wall_b: SpikeWall = $SpikeWallB
 
 var _attempt_id: int = 0
+var _auto_pending: bool = false
+var _auto_success_wall_id: String = ""
 
 func _ready() -> void:
 	if charger != null:
 		charger.target = player
 	_attempt_id = 0
+
+	if spike_wall_a != null:
+		spike_wall_a.induced_success.connect(_on_induced_success)
+	if spike_wall_b != null:
+		spike_wall_b.induced_success.connect(_on_induced_success)
+
 	EventLogger.log_event("room_enter", {"room": "ROOM_GAUNTLET_LANE", "run_id": RunManager.current_run_id})
 	EventLogger.log_event("tc04_session_start", {
 		"run_id": RunManager.current_run_id,
@@ -19,7 +29,15 @@ func _ready() -> void:
 		"hint": "F5=success(reset), F6=fail(reset), F7=reset(no log)",
 	})
 
+	# Optional automated loop (useful for agent-driven runs).
+	if GameApp != null and int(GameApp.tc04_auto_remaining) > 0:
+		_start_auto_loop()
+
 func _unhandled_input(event: InputEvent) -> void:
+	if _auto_pending:
+		# In auto mode we ignore manual keys to keep runs deterministic.
+		return
+
 	var k := event as InputEventKey
 	if k == null:
 		return
@@ -65,3 +83,52 @@ func _reset_scene() -> void:
 		"ts_msec": Time.get_ticks_msec(),
 	})
 	get_tree().reload_current_scene()
+
+func _on_induced_success(enemy_id: String, intent_id: String, wall_id: String) -> void:
+	_auto_success_wall_id = wall_id
+
+func _start_auto_loop() -> void:
+	_auto_pending = true
+	var timeout_sec := 6.0
+	if GameApp != null:
+		timeout_sec = float(GameApp.tc04_auto_attempt_timeout_sec)
+	EventLogger.log_event("tc04_auto_start", {
+		"run_id": RunManager.current_run_id,
+		"room_id": "ROOM_GAUNTLET_LANE",
+		"attempts_remaining": int(GameApp.tc04_auto_remaining) if GameApp != null else 0,
+		"timeout_sec": timeout_sec,
+	})
+	call_deferred("_auto_next_attempt")
+
+func _auto_next_attempt() -> void:
+	if GameApp == null or int(GameApp.tc04_auto_remaining) <= 0:
+		var total := 0
+		if GameApp != null:
+			total = int(GameApp.tc04_auto_attempts)
+		EventLogger.log_event("tc04_auto_done", {
+			"run_id": RunManager.current_run_id,
+			"room_id": "ROOM_GAUNTLET_LANE",
+			"attempts_total": total,
+		})
+		_auto_pending = false
+		if GameApp != null and bool(GameApp.tc04_auto_quit_on_finish):
+			get_tree().quit()
+		return
+
+	GameApp.tc04_auto_remaining = int(GameApp.tc04_auto_remaining) - 1
+	_auto_success_wall_id = ""
+
+	# Heuristic: place player near a wall to bait the charger.
+	if player != null:
+		player.global_position = TC04Auto.pick_bait_position(spike_wall_a, spike_wall_b)
+
+	var timeout_sec := 6.0
+	if GameApp != null:
+		timeout_sec = float(GameApp.tc04_auto_attempt_timeout_sec)
+
+	await get_tree().create_timer(timeout_sec).timeout
+	if _auto_success_wall_id != "":
+		_log_tc04_attempt(true, "")
+	else:
+		_log_tc04_attempt(false, "timeout")
+	_reset_scene()

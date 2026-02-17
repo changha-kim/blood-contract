@@ -10,6 +10,12 @@ const SPIKE_ARENA_GAUNTLET_LANE_SCENE: String = "res://scenes/levels/SpikeArena_
 
 var _did_bootstrap: bool = false
 
+# Debug/QA flags (PoC)
+var tc04_auto_attempts: int = 0
+var tc04_auto_remaining: int = 0
+var tc04_auto_attempt_timeout_sec: float = 6.0
+var tc04_auto_quit_on_finish: bool = true
+
 func _ready() -> void:
 	bootstrap()
 
@@ -22,6 +28,15 @@ func bootstrap() -> void:
 	Telemetry.log_event("app_start", {})
 	DataRepo.load_all()
 	RunManager.reset_run()
+	_parse_cmdline_flags()
+	if tc04_auto_attempts > 0:
+		tc04_auto_remaining = tc04_auto_attempts
+		# Start a fresh run and jump directly into TC04.
+		var run_id: int = RunManager.start_run()
+		Telemetry.log_event("run_start", {"run_id": run_id, "mode": "tc04_auto"})
+		EventLogger.log_event("run_start", {"run_id": run_id, "mode": "tc04_auto"})
+		go_to_spike_arena_gauntlet_lane()
+		return
 
 func go_to_main_menu() -> void:
 	_get_tree_safe().change_scene_to_file(MAIN_MENU_SCENE)
@@ -42,6 +57,25 @@ func go_to_intent_arena_slasher() -> void:
 
 func go_to_spike_arena_gauntlet_lane() -> void:
 	_get_tree_safe().change_scene_to_file(SPIKE_ARENA_GAUNTLET_LANE_SCENE)
+
+func _parse_cmdline_flags() -> void:
+	var args: PackedStringArray = OS.get_cmdline_args()
+	# TC04 auto-run
+	# Examples:
+	# - --tc04-auto (defaults to 10)
+	# - --tc04-auto=10
+	# - --tc04-timeout=6.0
+	# - --tc04-no-quit
+	if CmdlineParse.has_flag(args, "--tc04-auto"):
+		tc04_auto_attempts = 10
+		var v := CmdlineParse.get_flag_value(args, "--tc04-auto")
+		if v != "":
+			tc04_auto_attempts = maxi(0, int(v))
+	var t := CmdlineParse.get_flag_value(args, "--tc04-timeout")
+	if t != "":
+		tc04_auto_attempt_timeout_sec = maxf(0.5, float(t))
+	if CmdlineParse.has_flag(args, "--tc04-no-quit"):
+		tc04_auto_quit_on_finish = false
 
 func _get_tree_safe() -> SceneTree:
 	var tree := get_tree()
