@@ -74,6 +74,11 @@ Goal: reduce Producer (human) click burden while keeping `main` protected.
 - Keep strict checks on `main`.
 - `develop` can be looser (optional), but must be “green enough” before promotion.
 
+### Bypass policy (PoC)
+- Allowed: docs-only / tooling-only PRs, emergency unblockers.
+- Not allowed: gameplay rule changes that impact TC01/TC04 without at least one human glance.
+- Always record bypass merges by adding a 1-line note to `docs/QA_REPORT.md` or `STATE_PACKET` when it matters.
+
 ---
 
 ## Agent work visibility (future)
