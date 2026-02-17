@@ -31,16 +31,18 @@
   3) Validate Week 1 logging schema in run logs (`run_start` + `commit_enter` + `wall_hit`, while legacy aliases remain)
 
 ## Known issues (top 5)
-1) CLI environment for this task has no `godot` binary in `PATH`, so desktop smoke cannot be rerun from terminal.
-2) CLI environment for this task has no `gdlint`/`gdformat` binaries in `PATH`; lint/format checks are delegated to GitHub Actions.
+1) GitHub ruleset requires reviews on protected branches; during PoC debugging this can cause frequent manual merges.
+   - Mitigation: use `develop` for day-to-day PRs and promote `develop → main` in batches.
+2) CLI environment does not have `gdlint`/`gdformat` working locally (Python 3.14 compatibility); lint/format checks are delegated to GitHub Actions.
 3) Player attack is currently a placeholder hitbox + debug slash line, not final combat VFX.
 
 ## Next actions (do next; max 5)
-1) Run TC04 session in editor using MainMenu → **TC04 (Spike Arena)**.
+1) Run **TC01(min)** in editor (IntentArena_Slasher) and record whether Commit=LOCK cue is distinguishable from Telegraph (Pass/Mixed/Fail per QA_PACKET).
+2) Run TC04 session in editor using MainMenu → **TC04 (Spike Arena)**.
    - Do 10 attempts; mark **F5=success**, **F6=fail** (Shift=control, Ctrl=readability, Alt=rules); verify `tc04_attempt` logs.
-2) Run QA smoke for DEV-002 in editor: verify 60s movement stability, dash cooldown/invuln behavior, and attack visibility in `TestArena` and `IntentArena_Slasher`.
-3) Execute Week 1 log validation for `run_start`, `commit_enter`, and `wall_hit` events (and confirm `intent_commit` + `spikewall_hit` still coexist) and append results to `docs/QA_REPORT.md`.
-4) Tune player combat feel values (`move_speed`, attack placeholder timing/range, dash speed) using `godot/data/defs/player_core.json` after QA findings.
+3) Append TC01(min) + TC04 notes to `docs/QA_REPORT.md` (5-line summary each).
+4) Use `develop` as default PR target; promote `develop → main` in batches.
+5) Tune player combat feel values (`move_speed`, attack placeholder timing/range, dash speed) using `godot/data/defs/player_core.json` after QA findings.
 
 ## Links
 - GDD summary: docs/GDD_SUMMARY.md

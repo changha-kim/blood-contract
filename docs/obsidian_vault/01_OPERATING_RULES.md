@@ -51,6 +51,31 @@ Not allowed (avoid noise):
 
 ---
 
+## Git workflow (PoC / speed-first)
+Goal: reduce Producer (human) click burden while keeping `main` protected.
+
+### Branches
+- `main`: protected, release-quality snapshot.
+- `develop`: integration branch for day-to-day work.
+
+### Rules
+- Dev/QA agents **never push to `main`**.
+- Default target for PRs is **`develop`**.
+- Producer merges PRs into `develop` as needed (can be batched).
+- Promotion to `main` happens via a single PR:
+  - **`develop → main`** (daily or when a milestone slice is stable)
+
+### PR bundling
+- During debugging (many tiny fixes), prefer:
+  - accumulate commits on a feature branch, then open **one PR**, or
+  - batch multiple PR merges into `develop`, then promote once.
+
+### Status checks
+- Keep strict checks on `main`.
+- `develop` can be looser (optional), but must be “green enough” before promotion.
+
+---
+
 ## Agent work visibility (future)
 We will maintain an **Agent Activity Log** in the vault.
 - Each agent run creates a small entry: what/why/output/links.
