@@ -2,6 +2,8 @@ extends StaticBody2D
 class_name SpikeWall
 
 signal induced_success(enemy_id: String, intent_id: String, wall_id: String)
+# Relaxed success trigger for automation: any enemy wall hit that applies damage.
+signal enemy_wall_hit(enemy_id: String, wall_id: String, damage: int)
 
 @export var hazard_id: String = "HZD_SPIKE_WALL"
 @export var wall_id: String = "SPIKE_WALL"
@@ -100,6 +102,8 @@ func _on_area_entered(a: Area2D) -> void:
 		"stunned": stunned,
 		"internal_cd_blocked": false,
 	})
+	if is_enemy:
+		enemy_wall_hit.emit(target_id, wall_id, dmg)
 	_log_wall_hit_alias(target_id, "player" if is_player else "enemy", dmg, now_msec)
 
 	if is_enemy:

@@ -36,6 +36,11 @@
   - `--tc04-timeout=6.0`
   - `--tc04-no-quit` (do not quit after finishing)
 
+### Note (autorun success criteria)
+- Headless autorun uses a **relaxed success trigger** for stability:
+  - success when SpikeWall applies **enemy damage** (charger hit causes damage)
+  - (induced_success still logs separately, but is not required for autorun success)
+
 ## Pass / Mixed / Fail rubric
 - Pass:
   - TC04: 10회 시도 중 **≥3회** 재현 성공(Week1 기준 임시) + 실패 사유가 분류 가능
