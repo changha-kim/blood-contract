@@ -32,6 +32,13 @@ Next:
 - Keep fallback for automation, but treat real TC04 success as: `enemy_wall_hit` or `induced_success`.
 - To measure real success rate, run manual TC04 (F5/F6) or improve bait logic further.
 
+### 5) TC01(min) manual — Commit(LOCK) readability
+- Result: **PASS** (Commit=LOCK distinction felt clear)
+- Time-to-understand: ~10s
+- Key cue: **SFX(confirm)** + **color change**
+- Confusion: none reported
+- Fix idea (P0 candidate): add a more explicit **pre-crash anticipation motion** right before the crash/execute moment.
+
 ### Environment
 - Godot: 4.6.stable (console, `--headless`)
 - Project path: `blood_contract/godot`
