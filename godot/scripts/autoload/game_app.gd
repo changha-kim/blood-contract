@@ -59,7 +59,12 @@ func go_to_spike_arena_gauntlet_lane() -> void:
 	_get_tree_safe().change_scene_to_file(SPIKE_ARENA_GAUNTLET_LANE_SCENE)
 
 func _parse_cmdline_flags() -> void:
-	var args: PackedStringArray = OS.get_cmdline_args()
+	# Godot splits args into engine args and user args.
+	# We want the args passed after `--`.
+	var args: PackedStringArray = OS.get_cmdline_user_args()
+	if args.is_empty():
+		# Fallback (some launchers may not preserve user args correctly).
+		args = OS.get_cmdline_args()
 	# TC04 auto-run
 	# Examples:
 	# - --tc04-auto (defaults to 10)
