@@ -29,6 +29,13 @@
   - `docs/QA_REPORT.md` (수동 요약 1페이지)
   - `logs/` (런 단위 로그 파일)
 
+## Automation (optional)
+- TC04 can be auto-run via command line flags (for agent-driven smoke runs):
+  - `--tc04-auto` (defaults to 10 attempts)
+  - `--tc04-auto=10`
+  - `--tc04-timeout=6.0`
+  - `--tc04-no-quit` (do not quit after finishing)
+
 ## Pass / Mixed / Fail rubric
 - Pass:
   - TC04: 10회 시도 중 **≥3회** 재현 성공(Week1 기준 임시) + 실패 사유가 분류 가능

@@ -1,6 +1,8 @@
 extends StaticBody2D
 class_name SpikeWall
 
+signal induced_success(enemy_id: String, intent_id: String, wall_id: String)
+
 @export var hazard_id: String = "HZD_SPIKE_WALL"
 @export var wall_id: String = "SPIKE_WALL"
 
@@ -124,6 +126,7 @@ func _check_induced_success(enemy: Node) -> void:
 			"wall_id": wall_id,
 			"run_id": RunManager.current_run_id,
 		})
+		induced_success.emit(enemy.name, intent_id, wall_id)
 		Feedback.show_text("유도 성공", 0.8)
 		# Optional micro slow (apply to global time scale very briefly)
 		if has_method("_micro_slow"):
