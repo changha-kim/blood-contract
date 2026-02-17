@@ -18,7 +18,7 @@ enum Phase {
 @onready var hurtbox: Hurtbox = $Hurtbox
 @onready var attack_root: Node2D = $Attack
 @onready var hitbox: Hitbox = $Attack/Hitbox
-@onready var telegraph: TelegraphIndicator = $TelegraphIndicator
+@onready var telegraph: TelegraphIndicator = get_node_or_null("TelegraphIndicator") as TelegraphIndicator
 @onready var knockback: KnockbackComponent = get_node_or_null("Knockback") as KnockbackComponent
 
 var target: Node2D
@@ -100,22 +100,25 @@ func _on_phase_entered(p: Phase) -> void:
 	match p:
 		Phase.CHOOSE_INTENT:
 			hitbox.monitoring = false
-			telegraph.set_visible_telegraph(false)
-			telegraph.set_commit_locked(false)
+			if telegraph != null:
+				telegraph.set_visible_telegraph(false)
+				telegraph.set_commit_locked(false)
 		Phase.TELEGRAPH:
 			_execute_hit = false
 			_commit_cue_fired_this_commit = false
-			telegraph.set_visible_telegraph(true)
-			telegraph.set_commit_locked(false)
-			telegraph.set_style_telegraph()
+			if telegraph != null:
+				telegraph.set_visible_telegraph(true)
+				telegraph.set_commit_locked(false)
+				telegraph.set_style_telegraph()
 			_update_aim_telegraph()
 			var dmg := _get_intent_int(_intent_id, "damage", hitbox.damage)
 			var shape := _get_intent_string(_intent_id, "shape", "line")
 			EventLogger.log_event("intent_telegraph", {"enemy_id": enemy_id, "intent_id": _intent_id, "dmg": dmg, "shape": shape})
 		Phase.COMMIT:
-			telegraph.set_visible_telegraph(true)
-			telegraph.set_commit_locked(true) # fires LOCK + SFX (once) via TelegraphIndicator
-			telegraph.set_style_commit()      # SOLID/thick style
+			if telegraph != null:
+				telegraph.set_visible_telegraph(true)
+				telegraph.set_commit_locked(true) # fires LOCK + SFX (once) via TelegraphIndicator
+				telegraph.set_style_commit()      # SOLID/thick style
 			var lock_dir := _locked_dir
 			if lock_dir.length_squared() < 0.001:
 				lock_dir = Vector2.RIGHT
@@ -137,11 +140,13 @@ func _on_phase_entered(p: Phase) -> void:
 			_fire_commit_cue_once()
 			_apply_commit_micro_slow()
 		Phase.EXECUTE:
-			telegraph.set_visible_telegraph(false)
+			if telegraph != null:
+				telegraph.set_visible_telegraph(false)
 		Phase.RECOVER:
 			hitbox.monitoring = false
-			telegraph.set_visible_telegraph(false)
-			telegraph.set_commit_locked(false)
+			if telegraph != null:
+				telegraph.set_visible_telegraph(false)
+				telegraph.set_commit_locked(false)
 			EventLogger.log_event("intent_recover", {"enemy_id": enemy_id, "intent_id": _intent_id})
 
 # ---- Movement / aiming ----
@@ -175,20 +180,22 @@ func _compose_velocity(base_vel: Vector2, delta: float) -> Vector2:
 		v += knockback.get_velocity(delta)
 	return v
 
-func _update_aim_telegraph() -> void:
-	var dir := _get_desired_dir_to_target()
-	if dir.length_squared() > 0.001:
-		_locked_dir = dir
-	attack_root.rotation = _locked_dir.angle()
-	telegraph.set_direction(_locked_dir)
-
-func _commit_intent() -> void:
-	# Default lock rule: direction lock.
-	var dir := _get_desired_dir_to_target()
-	if dir.length_squared() > 0.001:
-		_locked_dir = dir
-	attack_root.rotation = _locked_dir.angle()
-	telegraph.set_direction(_locked_dir)
+func _update_aim_telegraph() -> void: 
+	var dir := _get_desired_dir_to_target() 
+	if dir.length_squared() > 0.001: 
+		_locked_dir = dir 
+	attack_root.rotation = _locked_dir.angle() 
+	if telegraph != null:
+		telegraph.set_direction(_locked_dir) 
+ 
+func _commit_intent() -> void: 
+	# Default lock rule: direction lock. 
+	var dir := _get_desired_dir_to_target() 
+	if dir.length_squared() > 0.001: 
+		_locked_dir = dir 
+	attack_root.rotation = _locked_dir.angle() 
+	if telegraph != null:
+		telegraph.set_direction(_locked_dir) 
 
 func _fire_commit_cue_once() -> void:
 	if _commit_cue_fired_this_commit:
