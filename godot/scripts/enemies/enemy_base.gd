@@ -119,12 +119,20 @@ func _on_phase_entered(p: Phase) -> void:
 			var lock_dir := _locked_dir
 			if lock_dir.length_squared() < 0.001:
 				lock_dir = Vector2.RIGHT
+			var now_msec: int = Time.get_ticks_msec()
 			# Existing intent_commit event (baseline)
 			EventLogger.log_event("intent_commit", {
 				"enemy_id": enemy_id,
 				"intent_id": _intent_id,
 				"lock_type": _get_lock_type(),
 				"lock_vector": {"x": lock_dir.x, "y": lock_dir.y},
+			})
+			# LOG-001 alias for Week1 schema alignment.
+			EventLogger.log_event("commit_enter", {
+				"run_id": RunManager.current_run_id,
+				"enemy_id": enemy_id,
+				"intent_id": _intent_id,
+				"ts_msec": now_msec,
 			})
 			_fire_commit_cue_once()
 			_apply_commit_micro_slow()

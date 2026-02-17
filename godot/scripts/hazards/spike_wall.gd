@@ -61,6 +61,7 @@ func _on_area_entered(a: Area2D) -> void:
 			"stunned": false,
 			"internal_cd_blocked": true,
 		})
+		_log_wall_hit_alias(target_id, "enemy", 0, now_msec)
 		return
 
 	var ratio := player_damage_ratio if is_player else enemy_damage_ratio
@@ -97,6 +98,7 @@ func _on_area_entered(a: Area2D) -> void:
 		"stunned": stunned,
 		"internal_cd_blocked": false,
 	})
+	_log_wall_hit_alias(target_id, "player" if is_player else "enemy", dmg, now_msec)
 
 	if is_enemy:
 		_check_induced_success(hb.get_parent())
@@ -126,6 +128,17 @@ func _check_induced_success(enemy: Node) -> void:
 		# Optional micro slow (apply to global time scale very briefly)
 		if has_method("_micro_slow"):
 			_micro_slow(0.10)
+
+func _log_wall_hit_alias(target_id: String, target_type: String, damage: int, ts_msec: int) -> void:
+	# LOG-001 alias for Week1 schema alignment.
+	EventLogger.log_event("wall_hit", {
+		"run_id": RunManager.current_run_id,
+		"wall_id": wall_id,
+		"target_id": target_id,
+		"target_type": target_type,
+		"damage": damage,
+		"ts_msec": ts_msec,
+	})
 
 func _micro_slow(duration_sec: float) -> void:
 	Engine.time_scale = 0.9
