@@ -7,7 +7,7 @@
   "dash": {
     "speed": 900.0,
     "duration_sec": 0.12,
-    "cooldown_sec": 0.85,
-    "invuln_sec": 0.18
+    "cooldown_sec": 0.75,
+    "invuln_sec": 0.12
   }
 }

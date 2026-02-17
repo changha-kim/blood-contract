@@ -6,6 +6,7 @@ extends Node
 const MAIN_MENU_SCENE: String = "res://scenes/ui/MainMenu.tscn"
 const TEST_ARENA_SCENE: String = "res://scenes/levels/TestArena.tscn"
 const INTENT_ARENA_SLASHER_SCENE: String = "res://scenes/levels/IntentArena_Slasher.tscn"
+const SPIKE_ARENA_GAUNTLET_LANE_SCENE: String = "res://scenes/levels/SpikeArena_GauntletLane.tscn"
 
 var _did_bootstrap: bool = false
 
@@ -38,6 +39,9 @@ func go_to_test_arena() -> void:
 
 func go_to_intent_arena_slasher() -> void:
 	_get_tree_safe().change_scene_to_file(INTENT_ARENA_SLASHER_SCENE)
+
+func go_to_spike_arena_gauntlet_lane() -> void:
+	_get_tree_safe().change_scene_to_file(SPIKE_ARENA_GAUNTLET_LANE_SCENE)
 
 func _get_tree_safe() -> SceneTree:
 	var tree := get_tree()
