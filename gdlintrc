@@ -1,0 +1,20 @@
+# gdlint configuration (GDToolkit)
+# We intentionally relax a few style-only rules for PoC velocity.
+# CI should still catch real issues, but we avoid blocking on ordering/line-length debates.
+
+disable:
+  - class-definitions-order
+  - max-line-length
+  - unused-argument
+  - unnecessary-pass
+
+# Keep whitespace/tab hygiene on.
+trailing-whitespace: null
+mixed-tabs-and-spaces: null
+
+tab-characters: 1
+
+# Default excluded directories + Godot cache.
+excluded_directories:
+  - .git
+  - .godot

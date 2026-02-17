@@ -31,7 +31,7 @@ func _apply_def() -> void:
 	player_damage_ratio = float(d.get("player_damage_ratio", player_damage_ratio))
 	stun_time = float(d.get("stun_time", stun_time))
 	player_stun_time = float(d.get("player_stun_time", player_stun_time))
-	internal_cd_sec = float(d.get("internal_cd_sec", internal_cd_sec))	
+	internal_cd_sec = float(d.get("internal_cd_sec", internal_cd_sec))
 	induced_commit_window_sec = float(d.get("induced_commit_window_sec", induced_commit_window_sec))
 	player_knockback_force = float(d.get("player_knockback_force", player_knockback_force))
 	player_knockback_duration = float(d.get("player_knockback_duration", player_knockback_duration))
