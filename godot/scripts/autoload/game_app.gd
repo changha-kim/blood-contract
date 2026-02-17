@@ -26,9 +26,16 @@ func bootstrap() -> void:
 	_did_bootstrap = true
 
 	Telemetry.log_event("app_start", {})
+	# Mirror into per-run log for automation visibility.
+	EventLogger.log_event("app_start", {})
 	DataRepo.load_all()
 	RunManager.reset_run()
 	_parse_cmdline_flags()
+	EventLogger.log_event("tc04_auto_flags", {
+		"tc04_auto_attempts": tc04_auto_attempts,
+		"tc04_auto_timeout_sec": tc04_auto_attempt_timeout_sec,
+		"tc04_auto_quit": tc04_auto_quit_on_finish,
+	})
 	if tc04_auto_attempts > 0:
 		tc04_auto_remaining = tc04_auto_attempts
 		# Start a fresh run and jump directly into TC04.
