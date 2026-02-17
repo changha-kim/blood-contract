@@ -2,6 +2,27 @@
 
 ## 2026-02-17 — DEV-002 smoke + Week 1 logging validation (headless)
 
+### 4) TC04 auto-run (headless)
+
+**Run A**
+- Runner: Godot 4.6 console (`--headless`)
+- Flags: `--tc04-auto=10 --tc04-timeout=2.0`
+- Log: `user://logs/run_2026-02-17T10-45-49.jsonl`
+- Result: **0 / 10 success** (timeout=10)
+
+**Run B**
+- Runner: Godot 4.6 console (`--headless`)
+- Flags: `--tc04-auto=10 --tc04-timeout=6.0`
+- Log: `user://logs/run_2026-02-17T10-54-29.jsonl`
+- Result: **0 / 10 success** (timeout=10)
+
+Interpretation:
+- Autorun loop + logging works.
+- Current bait heuristic fails to induce `SpikeWall.induced_success` even with 6s timeout.
+
+Next:
+- Improve bait logic (positioning + movement) OR relax/replace the success trigger for automation.
+
 ### Environment
 - Godot: 4.6.stable (console, `--headless`)
 - Project path: `blood_contract/godot`
