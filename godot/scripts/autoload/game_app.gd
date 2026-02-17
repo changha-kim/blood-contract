@@ -63,7 +63,12 @@ func go_to_intent_arena_slasher() -> void:
 	_get_tree_safe().change_scene_to_file(INTENT_ARENA_SLASHER_SCENE)
 
 func go_to_spike_arena_gauntlet_lane() -> void:
-	_get_tree_safe().change_scene_to_file(SPIKE_ARENA_GAUNTLET_LANE_SCENE)
+	# When called from autoload _ready(), scene tree can be mid-mutation.
+	# Defer to avoid "Parent node is busy" errors (common in headless automation).
+	call_deferred("_deferred_change_scene", SPIKE_ARENA_GAUNTLET_LANE_SCENE)
+
+func _deferred_change_scene(scene_path: String) -> void:
+	_get_tree_safe().change_scene_to_file(scene_path)
 
 func _parse_cmdline_flags() -> void:
 	# Godot splits args into engine args and user args.
