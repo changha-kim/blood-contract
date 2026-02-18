@@ -1,0 +1,46 @@
+name: tc04-smoke
+
+on:
+  pull_request:
+    paths:
+      - 'godot/**'
+      - 'tools/qa/**'
+      - '.github/workflows/tc04-smoke.yml'
+
+jobs:
+  tc04:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Download Godot (headless)
+        run: |
+          set -euo pipefail
+          GODOT_VERSION=4.3
+          # Official Godot builds naming for Linux headless
+          ZIP=Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip
+          URL=https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/${ZIP}
+          curl -L "$URL" -o godot.zip
+          unzip -q godot.zip -d godot_bin
+          chmod +x godot_bin/Godot_v${GODOT_VERSION}-stable_linux.x86_64
+          echo "GODOT_BIN=$(pwd)/godot_bin/Godot_v${GODOT_VERSION}-stable_linux.x86_64" >> $GITHUB_ENV
+
+      - name: Run TC04 autorun (headless)
+        run: |
+          set -euo pipefail
+          mkdir -p _ci_user
+          "$GODOT_BIN" --headless --path godot --user-data-dir "$(pwd)/_ci_user" -- --tc04-auto=10 --tc04-timeout=6.0
+
+      - name: Parse latest log
+        run: |
+          set -euo pipefail
+          LOG=$(ls -1t _ci_user/logs/run_*.jsonl | head -n 1)
+          echo "Using log: $LOG"
+          python tools/qa/parse_tc04_log.py "$LOG" --min-attempts 10 --min-success 1
