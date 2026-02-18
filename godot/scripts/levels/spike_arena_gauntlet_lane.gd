@@ -12,12 +12,18 @@ const TC04Auto := preload("res://scripts/levels/_tc04_auto.gd")
 
 var _attempt_id: int = 0
 var _auto_pending: bool = false
+
+# In autorun, we mark success only when SpikeWall actually applies enemy damage.
 var _auto_success_wall_id: String = ""
+var _auto_success_damage: int = 0
 
 func _ready() -> void:
 	if charger != null:
 		charger.target = player
 	_attempt_id = 0
+	# Keep attempt ids monotonic across scene reloads in autorun.
+	if GameApp != null:
+		_attempt_id = int(GameApp.tc04_attempt_seq)
 
 	if spike_wall_a != null:
 		spike_wall_a.induced_success.connect(_on_induced_success)
@@ -68,6 +74,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _log_tc04_attempt(success: bool, fail_reason: String) -> void:
 	_attempt_id += 1
+	if GameApp != null:
+		GameApp.tc04_attempt_seq = _attempt_id
 	var payload := {
 		"run_id": RunManager.current_run_id,
 		"room_id": "ROOM_GAUNTLET_LANE",
@@ -89,12 +97,28 @@ func _reset_scene() -> void:
 	get_tree().reload_current_scene()
 
 func _on_induced_success(enemy_id: String, intent_id: String, wall_id: String) -> void:
-	_auto_success_wall_id = wall_id
+	# Instrumentation only. We do NOT treat induced_success as an autorun success.
+	# (It may happen without actual spike damage.)
+	EventLogger.log_event("tc04_induced_success", {
+		"run_id": RunManager.current_run_id,
+		"room_id": "ROOM_GAUNTLET_LANE",
+		"enemy_id": enemy_id,
+		"intent_id": intent_id,
+		"wall_id": wall_id,
+	})
 
 func _on_enemy_wall_hit(enemy_id: String, wall_id: String, damage: int) -> void:
-	# Relaxed automation success: any enemy hit that applies damage counts as success.
-	# This makes headless autoruns stable while still measuring the core "charger into spikes" outcome.
-	_auto_success_wall_id = wall_id
+	# Autorun success: enemy damage actually applied by SpikeWall.
+	if int(damage) > 0:
+		_auto_success_wall_id = wall_id
+		_auto_success_damage = int(damage)
+		EventLogger.log_event("tc04_wall_hit_damage", {
+			"run_id": RunManager.current_run_id,
+			"room_id": "ROOM_GAUNTLET_LANE",
+			"enemy_id": enemy_id,
+			"wall_id": wall_id,
+			"damage": int(damage),
+		})
 
 func _start_auto_loop() -> void:
 	_auto_pending = true
@@ -126,6 +150,7 @@ func _auto_next_attempt() -> void:
 
 	GameApp.tc04_auto_remaining = int(GameApp.tc04_auto_remaining) - 1
 	_auto_success_wall_id = ""
+	_auto_success_damage = 0
 
 	# Deterministic bait sweep: vary position by attempt to discover working setups.
 	if player != null:
@@ -138,19 +163,25 @@ func _auto_next_attempt() -> void:
 	# Wait up to timeout, but also allow early-exit when we detect success.
 	var start_ms := Time.get_ticks_msec()
 	var timeout_ms := int(timeout_sec * 1000.0)
-	var had_execute := false
 	while (Time.get_ticks_msec() - start_ms) < timeout_ms:
 		if _auto_success_wall_id != "":
 			break
-		if charger != null and charger.has_method("is_in_execute"):
-			had_execute = had_execute or bool(charger.call("is_in_execute"))
+		# Detect disappearance / wild warp (common failure mode during collision bugs).
+		if charger == null or not is_instance_valid(charger):
+			_log_tc04_attempt(false, "enemy_missing")
+			_reset_scene()
+			return
+		var p := charger.global_position
+		if absf(p.x) > 5000.0 or absf(p.y) > 5000.0:
+			EventLogger.log_event("tc04_enemy_oob", {"x": p.x, "y": p.y, "attempt_id": _attempt_id})
+			_log_tc04_attempt(false, "enemy_oob")
+			_reset_scene()
+			return
 		# Poll at 10Hz to keep it cheap.
 		await get_tree().create_timer(0.10).timeout
 
 	if _auto_success_wall_id != "":
-		_log_tc04_attempt(true, "wall_hit")
-	elif had_execute:
-		_log_tc04_attempt(true, "execute")
+		_log_tc04_attempt(true, "wall_hit_damage")
 	else:
 		_log_tc04_attempt(false, "timeout")
 	_reset_scene()
