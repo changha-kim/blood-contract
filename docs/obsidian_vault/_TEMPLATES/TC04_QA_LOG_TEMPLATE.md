@@ -1,18 +1,18 @@
-# TC04 Log — {{date}}
+# TC04 로그 — {{date}}
 
-## Setup
+## 환경(Setup)
 - Build/branch:
 - Device:
 
-## Results
+## 결과(Results)
 - Success: __ / 10
 - control: __
 - readability: __
 - rules: __
 - other: __
 
-## Notes
+## 메모(Notes)
 -
 
-## Next action
+## 다음 액션(Next action)
 - [ ]
