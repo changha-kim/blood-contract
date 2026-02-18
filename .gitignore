@@ -8,3 +8,7 @@ export_presets.cfg.user
 # Project-local build outputs
 godot/build/
 
+# Dev dispatcher (local lock/state)
+tools/.dev_dispatcher.lock
+tools/dev_dispatcher_state.json
+

@@ -183,22 +183,22 @@ func _compose_velocity(base_vel: Vector2, delta: float) -> Vector2:
 		v += knockback.get_velocity(delta)
 	return v
 
-func _update_aim_telegraph() -> void: 
-	var dir := _get_desired_dir_to_target() 
-	if dir.length_squared() > 0.001: 
-		_locked_dir = dir 
-	attack_root.rotation = _locked_dir.angle() 
+func _update_aim_telegraph() -> void:
+	var dir := _get_desired_dir_to_target()
+	if dir.length_squared() > 0.001:
+		_locked_dir = dir
+	attack_root.rotation = _locked_dir.angle()
 	if telegraph != null:
-		telegraph.set_direction(_locked_dir) 
- 
-func _commit_intent() -> void: 
-	# Default lock rule: direction lock. 
-	var dir := _get_desired_dir_to_target() 
-	if dir.length_squared() > 0.001: 
-		_locked_dir = dir 
-	attack_root.rotation = _locked_dir.angle() 
+		telegraph.set_direction(_locked_dir)
+
+func _commit_intent() -> void:
+	# Default lock rule: direction lock.
+	var dir := _get_desired_dir_to_target()
+	if dir.length_squared() > 0.001:
+		_locked_dir = dir
+	attack_root.rotation = _locked_dir.angle()
 	if telegraph != null:
-		telegraph.set_direction(_locked_dir) 
+		telegraph.set_direction(_locked_dir)
 
 func _fire_commit_cue_once() -> void:
 	if _commit_cue_fired_this_commit:
