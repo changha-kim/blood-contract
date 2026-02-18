@@ -23,7 +23,17 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p _ci_user
-          godot --headless --path godot --user-data-dir "$(pwd)/_ci_user" -- --tc04-auto=10 --tc04-timeout=6.0
+
+          # godot-ci images sometimes expose the binary under different names/paths.
+          GODOT_BIN=""
+          if command -v godot >/dev/null 2>&1; then GODOT_BIN="$(command -v godot)"; fi
+          if [ -z "$GODOT_BIN" ] && command -v godot4 >/dev/null 2>&1; then GODOT_BIN="$(command -v godot4)"; fi
+          if [ -z "$GODOT_BIN" ] && [ -x "/usr/local/bin/godot" ]; then GODOT_BIN="/usr/local/bin/godot"; fi
+          if [ -z "$GODOT_BIN" ] && [ -x "/usr/bin/godot" ]; then GODOT_BIN="/usr/bin/godot"; fi
+          echo "Using GODOT_BIN=$GODOT_BIN"
+          "$GODOT_BIN" --version
+
+          "$GODOT_BIN" --headless --path godot --user-data-dir "$(pwd)/_ci_user" -- --tc04-auto=10 --tc04-timeout=6.0
 
       - name: Parse latest log
         run: |
