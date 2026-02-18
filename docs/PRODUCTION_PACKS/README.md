@@ -5,6 +5,7 @@ This folder contains **content packs** produced in parallel (Narrative / Design 
 ## Rules
 - **Do not modify `godot/**`** in assist-team work.
 - Prefer editing only under: `docs/PRODUCTION_PACKS/**`.
+- Maintain continuity by updating: `docs/PRODUCTION_PACKS/ASSIST_MEMORY.md`.
 - Integration into the game happens later via a dedicated **integration PR**.
 
 ## Pack structure
