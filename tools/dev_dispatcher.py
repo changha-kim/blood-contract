@@ -217,9 +217,18 @@ def codex_prompt(task_packet: Path) -> str:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--min-minutes", type=int, default=30, help="rate limit between dispatches")
+    ap.add_argument(
+        "--conservative",
+        action="store_true",
+        help="alias for conservative mode (currently: enforce >=30 min rate limit)",
+    )
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--scan", action="append", help="extra scan path (file or dir)")
     args = ap.parse_args()
+
+    if args.conservative:
+        # Back-compat: some automation reminders call --conservative.
+        args.min_minutes = max(int(args.min_minutes), 30)
 
     scan_paths = DEFAULT_SCAN.copy()
     if args.scan:
