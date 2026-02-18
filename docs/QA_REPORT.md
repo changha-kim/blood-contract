@@ -1,12 +1,13 @@
 # QA_REPORT
 
 <!-- DEV_REQUEST:start -->
-title: TC04: spike wall enemy damage feedback + stop wall sliding
+title: TC04: ensure enemy enters SpikeWall trigger and takes damage (visible + logged)
 priority: P0
 scope: godot
-acceptance: In TC04 Spike Arena, when Charger hits SpikeWall, player gets clear confirmation (SFX or on-screen text) and log includes wall_hit(target=enemy, damage>0). Charger should not keep sliding/crushing along the wall after impact (short stop/stun/repel ok).
-notes: Manual TC04 (2026-02-18): 0/5 had any damage feeling; no audible SFX; only “hit wall then slide forward”. Keep changes minimal; do not rename events.
-dispatch: hold
+acceptance: In TC04 Spike Arena, when Charger collides with SpikeWall during commit/execute, SpikeWall damage must actually apply at least once per 10 attempts (manual). Evidence: log contains spikewall_hit(target_type=enemy, damage>0) and/or wall_hit(target=enemy, damage>0) and on-screen feedback (SPIKE HIT!/equivalent) is shown.
+notes: Repo is on main a6ce10c with SPIKE HIT! implemented in SpikeWall, but manual play still shows 0/5 visible hits and no feedback; likely trigger/layer/mask/shape prevents enemy Hurtbox from entering SpikeWall Trigger area. Fix minimal and TC04-specific if needed. Do not rename events; keep spikewall_hit + wall_hit alias.
+
+dispatch: now
 <!-- DEV_REQUEST:end -->
 
 ## 2026-02-17 — DEV-002 smoke + Week 1 logging validation (headless)
