@@ -19,8 +19,8 @@
   4) Synergy tier-3 appears at least once on average (TC05)
 
 ## Current build
-- Version tag: **poc-0.1.1 (LOG-001 alias events added)**
-- Last successful run: **2026-02-16** (Desktop smoke, in-editor; terminal rerun unavailable in this task environment)
+- Version tag: **poc-0.1.1**
+- Last successful run: **2026-02-18** (in-editor TC04 session; SpikeWall feedback patch in progress)
 - Last export build: **TBD** (Android / Desktop)
 
 ## Current focus (this week)
@@ -33,14 +33,16 @@
 ## Known issues (top 5)
 1) CLI environment for this task has no `godot` binary in `PATH`, so desktop smoke cannot be rerun from terminal.
 2) CLI environment for this task has no `gdlint`/`gdformat` binaries in `PATH`; lint/format checks are delegated to GitHub Actions.
-3) Player attack is currently a placeholder hitbox + debug slash line, not final combat VFX.
+3) TC04 manual playtest: SpikeWall enemy damage feedback (SFX/visual) is missing or too subtle; testers can’t confirm damage.
+4) Charger sometimes slides along SpikeWall after collision, creating an unnatural “crush/slide” look.
+5) Player attack is currently a placeholder hitbox + debug slash line, not final combat VFX.
 
 ## Next actions (do next; max 5)
-1) Run TC04 session in editor using MainMenu → **TC04 (Spike Arena)**.
-   - Do 10 attempts; mark **F5=success**, **F6=fail** (Shift=control, Ctrl=readability, Alt=rules); verify `tc04_attempt` logs.
-2) Run QA smoke for DEV-002 in editor: verify 60s movement stability, dash cooldown/invuln behavior, and attack visibility in `TestArena` and `IntentArena_Slasher`.
-3) Execute Week 1 log validation for `run_start`, `commit_enter`, and `wall_hit` events (and confirm `intent_commit` + `spikewall_hit` still coexist) and append results to `docs/QA_REPORT.md`.
-4) Tune player combat feel values (`move_speed`, attack placeholder timing/range, dash speed) using `godot/data/defs/player_core.json` after QA findings.
+1) TC04: add clear SpikeWall-on-enemy feedback (SFX or on-screen text) + log `wall_hit(target=enemy, damage>0)`.
+2) TC04: reduce Charger wall sliding/crushing after impact (short stop/stun/repel ok).
+3) Re-run manual TC04 (10 attempts) and record success/fail breakdown with reasons.
+4) Run QA smoke for DEV-002 in editor: verify 60s movement stability, dash cooldown/invuln behavior, and attack visibility in `TestArena` and `IntentArena_Slasher`.
+5) Execute Week 1 log validation for `run_start`, `commit_enter`, and `wall_hit` events (and confirm `intent_commit` + `spikewall_hit` still coexist) and append results to `docs/QA_REPORT.md`.
 
 ## Links
 - GDD summary: docs/GDD_SUMMARY.md

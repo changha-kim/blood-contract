@@ -103,6 +103,7 @@ func _on_area_entered(a: Area2D) -> void:
 		"internal_cd_blocked": false,
 	})
 	if is_enemy:
+		Feedback.show_text("SPIKE HIT!", 0.55)
 		enemy_wall_hit.emit(target_id, wall_id, dmg)
 	_log_wall_hit_alias(target_id, "player" if is_player else "enemy", dmg, now_msec)
 
@@ -142,6 +143,7 @@ func _log_wall_hit_alias(target_id: String, target_type: String, damage: int, ts
 		"run_id": RunManager.current_run_id,
 		"wall_id": wall_id,
 		"target_id": target_id,
+		"target": target_type,
 		"target_type": target_type,
 		"damage": damage,
 		"ts_msec": ts_msec,
