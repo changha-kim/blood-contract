@@ -16,6 +16,9 @@ var tc04_auto_remaining: int = 0
 var tc04_auto_attempt_timeout_sec: float = 6.0
 var tc04_auto_quit_on_finish: bool = true
 
+# Monotonic attempt sequence across scene reloads (used by TC04 automation)
+var tc04_attempt_seq: int = 0
+
 func _ready() -> void:
 	bootstrap()
 
