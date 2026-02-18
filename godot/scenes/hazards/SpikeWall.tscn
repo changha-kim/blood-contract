@@ -5,6 +5,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(32, 96)
 
+# Slightly larger trigger area so a CharacterBody2D that stops at collision contact
+# still produces an overlap with Hurtbox.
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_TRIGGER"]
+size = Vector2(44, 112)
+
 [node name="SpikeWall" type="StaticBody2D"]
 script = ExtResource("1")
 wall_id = "SPIKE_WALL_1"
@@ -17,7 +22,7 @@ monitoring = true
 monitorable = true
 
 [node name="TriggerCollision" type="CollisionShape2D" parent="Trigger"]
-shape = SubResource("RectangleShape2D_1")
+shape = SubResource("RectangleShape2D_TRIGGER")
 
 [node name="Sprite" type="ColorRect" parent="."]
 color = Color(0.8, 0.8, 0.9, 1)
