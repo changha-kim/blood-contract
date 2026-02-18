@@ -104,6 +104,16 @@ func _on_area_entered(a: Area2D) -> void:
 	})
 	if is_enemy:
 		Feedback.show_text("SPIKE HIT!", 0.55)
+		# Visual marker at impact to improve readability (TC04).
+		Feedback.spawn_hit_point(hb.global_position)
+		EventLogger.log_event("spikewall_hitpoint", {
+			"run_id": RunManager.current_run_id,
+			"wall_id": wall_id,
+			"target_id": target_id,
+			"x": hb.global_position.x,
+			"y": hb.global_position.y,
+			"ts_msec": now_msec,
+		})
 		enemy_wall_hit.emit(target_id, wall_id, dmg)
 	_log_wall_hit_alias(target_id, "player" if is_player else "enemy", dmg, now_msec)
 
