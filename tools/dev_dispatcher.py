@@ -263,8 +263,10 @@ def main() -> int:
         # run codex
         prompt = codex_prompt(task_packet)
         print(f"DISPATCH: {req['title']} -> branch {branch} -> {task_packet.name}")
+        # Windows note: when codex is installed via npm, the shim is typically `codex.cmd`.
+        codex_bin = os.environ.get("CODEX_BIN") or ("codex.cmd" if os.name == "nt" else "codex")
         cp = subprocess.run(
-            ["codex", "exec", "--full-auto", prompt],
+            [codex_bin, "exec", "--full-auto", prompt],
             cwd=str(REPO_ROOT),
             text=True,
         )
