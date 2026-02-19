@@ -1,12 +1,12 @@
 # QA_REPORT
 
 <!-- DEV_REQUEST:start -->
-title: TC04: spike wall enemy damage feedback + stop wall sliding
+title: TC04: stop post-collision lateral drift + fix induced_success feedback + audit enemy death cause
 priority: P0
 scope: godot
-acceptance: In TC04 Spike Arena, when Charger hits SpikeWall, player gets clear confirmation (SFX or on-screen text) and log includes wall_hit(target=enemy, damage>0). Charger should not keep sliding/crushing along the wall after impact (short stop/stun/repel ok).
-notes: Manual TC04 (2026-02-18): 0/5 had any damage feeling; no audible SFX; only “hit wall then slide forward”. Keep changes minimal; do not rename events.
-dispatch: hold
+acceptance: In TC04 Spike Arena, when Charger hits SpikeWall, (1) Charger does not keep sliding sideways along the wall due to inertia; on first wall collision during execute, lateral velocity is clamped (stop or small repel ok) and the enemy transitions cleanly into recover. (2) "유도 성공" feedback reliably shows on each induced_success trigger per run, including after F5 restart (no one-time-only bug). (3) Add lightweight logging to disambiguate why Charger disappears: distinguish deaths from SpikeWall damage vs player collision damage; ensure player collision does NOT unintentionally damage the enemy unless explicitly intended.
+notes: Field test (2026-02-19): damage feedback feels OK; lateral wall drift remains. Observed: Charger disappears after ~13 body-crush contacts with player; if player dodges, Charger can keep charging indefinitely. Observed: "유도 성공" shows only once and not after F5 restart. Also: player can pass through/hide inside SpikeWall (confirm if intended for PoC).
+dispatch: now
 <!-- DEV_REQUEST:end -->
 
 ## 2026-02-17 — DEV-002 smoke + Week 1 logging validation (headless)

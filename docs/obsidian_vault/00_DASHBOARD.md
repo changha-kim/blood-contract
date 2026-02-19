@@ -19,7 +19,8 @@ develop
 - [[QA_LOGS/QA_LOG_INDEX]]
 - [[PR/PR_INDEX]]
 - [[AGENTS/AGENT_ACTIVITY_LOG]]
-- [[03_ASSIST_DEPT_STATUS]] ← **Assist Dept Kanban + Decisions (Session 4)**
+- [[03_ASSIST_DEPT_STATUS]] ← **Assist Dept Kanban + 모델 로그 (Session 7)**
+- [Narrative Pack](../../PRODUCTION_PACKS/NARRATIVE/) ← Logline v001 / UI Seeds v001 / KO Microcopy v002
 
 ---
 
