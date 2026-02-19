@@ -4,7 +4,39 @@
 
 ---
 
-## Kanban
+## Kanban (plugin)
+
+> Obsidian Community Plugin **Kanban** 설치 시 아래 블록이 실제 칸반 보드로 렌더링됩니다.
+
+```kanban
+## Backlog
+- [ ] Design: Shielder/Slasher LOCK 변형 스펙
+- [ ] Data: TC10 집계 스키마
+- [ ] Narrative: 카드 18장 이름 한국어화
+
+## Doing
+- [ ] Audio: wall_hit_impact 실물 파일 확보 (BFXR → ogg)
+- [ ] Audio: lock_primary 실물 파일 확보 (freesound CC0 → ogg)
+- [ ] Dev(Codex): TC04 피드백 + alias 이벤트 + 벽 슬라이딩 방지
+- [ ] Dev(Codex): TC01 LOCK vs Telegraph 시각 구현
+
+## Blocked (Decisions)
+- [ ] DECISION-1: HUD 표시어 6개 확정 (아래 표에 ✅/✏️)
+- [ ] DECISION-2: Tier3/4 발동 시점 A/B 확정
+- [ ] DECISION-3: TC02 dim Week1 포함 A/B 확정
+- [ ] Data: cost 필드 “PoC 전부 0” 확정 필요
+
+## Done
+- [x] Audio: wall_hit_impact 소스 확정
+- [x] Audio: lock_primary 소스 확정
+- [x] Narrative: HUD 표시어 추천안 확정
+- [x] Data: Tier3/4 발동 시점 추천
+- [x] Design: TC01/TC04 구현 체크리스트 (v003)
+```
+
+---
+
+## Kanban (table)
 
 ### ✅ Done
 
@@ -20,12 +52,12 @@
 
 ### 🔄 Doing
 
-| Owner | 항목 | 담당 | ETA |
-|---|---|---|---|
-| Audio (외부) | `wall_hit_impact` 실물 파일 확보 | 개발자/메인팀 | M1 내 |
-| Audio (외부) | `lock_primary` 실물 파일 확보 | 개발자/메인팀 | M1 내 |
-| Main team | TC04 SpikeWall 피해 피드백 코드 구현 | Dev (Codex) | M1 |
-| Main team | TC01 LOCK vs Telegraph 시각 구현 | Dev (Codex) | M1 |
+| Owner      | 항목                           | 담당          | ETA  |
+| ---------- | ---------------------------- | ----------- | ---- |
+| Audio (외부) | `wall_hit_impact` 실물 파일 확보   | 개발자/메인팀     | M1 내 |
+| Audio (외부) | `lock_primary` 실물 파일 확보      | 개발자/메인팀     | M1 내 |
+| Main team  | TC04 SpikeWall 피해 피드백 코드 구현  | Dev (Codex) | M1   |
+| Main team  | TC01 LOCK vs Telegraph 시각 구현 | Dev (Codex) | M1   |
 
 ---
 
@@ -99,9 +131,9 @@
 
 ✅ **Assist 추천: B. Week2 이연** — M1 P0는 TC04+TC01 완료에 집중.
 
-| 항목 | 메인팀 결정 |
-|---|---|
-| Week1 포함 여부 (A/B) | ⬜ |
+| 항목                | 메인팀 결정 |
+| ----------------- | ------ |
+| Week1 포함 여부 (A/B) | ⬜      |
 
 ---
 
