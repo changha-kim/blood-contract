@@ -21,6 +21,7 @@ tools/__pycache__/
 
 # Temp/one-off files
 _tmp*
+docs/overnight_*.md
 
 # Godot UID sidecar files (generated)
 **/*.uid
