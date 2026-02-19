@@ -51,3 +51,4 @@
 ## Notes to Dev (Codex)
 - Allowed folders: `godot/`(project), `tools/`, `docs/PACKETS/`, `assets/`
 - Must update on finish: `STATE_PACKET`의 Current build / Known issues / Next actions
+
