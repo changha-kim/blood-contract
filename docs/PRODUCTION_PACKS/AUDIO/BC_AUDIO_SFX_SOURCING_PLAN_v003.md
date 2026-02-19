@@ -59,4 +59,28 @@
 | `lock_accent` | ⬜ NEEDED (P2) | BFXR | `sfx_lock_accent.ogg` |
 
 **목표 경로:** `godot/assets/audio/sfx/` — 파일 커밋은 통합 PR 시점에 진행.
+
+---
+
+## 복사-붙여넣기 커맨드 (바로 사용)
+
+### wall_hit_impact — BFXR 생성 후 변환
+```bash
+# 1. https://www.bfxr.net/ → Hit/Hurt 프리셋 → Start Freq 낮춤(0.2) → Export .wav
+ffmpeg -i sfx_wall_hit_impact.wav -c:a libvorbis -q:a 5 sfx_wall_hit_impact.ogg
+cp sfx_wall_hit_impact.ogg godot/assets/audio/sfx/
+# 목표 길이: 0.2–0.35s
+```
+
+### lock_primary — freesound 다운로드 후 변환
+```bash
+# 1. freesound.org CC0 검색 → .wav 다운로드
+ffmpeg -i <downloaded>.wav -c:a libvorbis -q:a 5 sfx_lock_primary.ogg
+cp sfx_lock_primary.ogg godot/assets/audio/sfx/
+# CC0: CREDITS.md 기재 불필요 | CC-BY: 파일명+작성자+URL 기재 필수
+```
+
+### 공통 규칙
+- 파일명: `sfx_{id}.ogg` | 경로: `godot/assets/audio/sfx/`
+- **커밋 전 Godot 에디터 재생 테스트 필수 — 바이너리 직접 커밋 금지**
 ---
