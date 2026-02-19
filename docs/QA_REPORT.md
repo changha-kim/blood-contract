@@ -9,6 +9,15 @@ notes: Field test (2026-02-19): damage feedback feels OK; lateral wall drift rem
 dispatch: now
 <!-- DEV_REQUEST:end -->
 
+<!-- DEV_REQUEST:start -->
+title: AUDIO P0: add wall_hit_impact + lock_primary SFX assets (TC04/TC01)
+priority: P0
+scope: godot
+acceptance: (1) `sfx_wall_hit_impact.ogg` and `sfx_lock_primary.ogg` exist under `godot/assets/audio/sfx/` and are loadable in Godot. (2) TC04 SpikeWall enemy hit uses `sfx_wall_hit_impact` (audible, not clipping). (3) TC01 LOCK primary cue uses `sfx_lock_primary` (short, crisp). (4) If any source is not CC0, update credits per repo policy.
+notes: Follow sourcing plan `docs/PRODUCTION_PACKS/AUDIO/BC_AUDIO_SFX_SOURCING_PLAN_v003.md`. Keep the sounds short (0.15–0.35s) and phone-speaker readable. Prefer CC0 sources.
+dispatch: now
+<!-- DEV_REQUEST:end -->
+
 ## 2026-02-17 — DEV-002 smoke + Week 1 logging validation (headless)
 
 ### 4) TC04 auto-run (headless)
