@@ -1,6 +1,15 @@
 # QA_REPORT
 
 <!-- DEV_REQUEST:start -->
+title: Integrate stesproject Godot 4 topdown template (combat skeleton extraction)
+priority: P0
+scope: godot
+acceptance: (1) Import/port a minimal combat skeleton from https://github.com/stesproject/godot-2d-topdown-template into `blood_contract/godot/` without breaking existing TC01/TC04 scenes. (2) Player has fast topdown movement + dash/flash + basic melee attack + i-frames (if present in template) wired to existing input map or a minimal compatible one. (3) Hurtbox/Hitbox/Health/Knockback are componentized and usable by existing enemies (at least Charger) with minimal glue. (4) Provide a small "Playground" scene to validate feel quickly (move/dash/attack/hit). (5) Keep our core rule integration path clear: enemy FSM supports Telegraph→LOCK→Execute→Recover states (can be stubbed but architecture must support it).
+notes: Do NOT wholesale replace our project; extract only needed modules. Prefer keeping existing autoloads (DataRepo/EventLogger/Feedback/RunManager) and integrate template code around them. Remove/avoid nonessential systems (inventory/dialogue/save) for PoC. Record license attribution (MIT) + source URL in a new `docs/CREDITS.md` entry.
+dispatch: now
+<!-- DEV_REQUEST:end -->
+
+<!-- DEV_REQUEST:start -->
 title: TC04: stop post-collision lateral drift + fix induced_success feedback + audit enemy death cause
 priority: P0
 scope: godot
