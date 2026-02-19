@@ -272,8 +272,15 @@ def main() -> int:
         # run codex
         prompt = codex_prompt(task_packet)
         print(f"DISPATCH: {req['title']} -> branch {branch} -> {task_packet.name}")
+        # Windows note: `codex` is commonly installed as a `.cmd` shim (npm global bin).
+        # `subprocess.run(["codex", ...])` can fail on Windows because CreateProcess cannot execute `.cmd` directly.
+        # Use `cmd.exe /c codex ...` so PATH+PATHEXT resolution works.
+        codex_cmd = ["codex", "exec", "--full-auto", prompt]
+        if os.name == "nt":
+            codex_cmd = ["cmd.exe", "/d", "/s", "/c"] + codex_cmd
+
         cp = subprocess.run(
-            ["codex", "exec", "--full-auto", prompt],
+            codex_cmd,
             cwd=str(REPO_ROOT),
             text=True,
         )
