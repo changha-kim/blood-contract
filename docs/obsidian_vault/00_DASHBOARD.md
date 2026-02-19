@@ -15,6 +15,7 @@
 - [[QA_LOGS/QA_LOG_INDEX]]
 - [[PR/PR_INDEX]]
 - [[AGENTS/AGENT_ACTIVITY_LOG]]
+- [[03_ASSIST_DEPT_STATUS]] ← **Assist Dept Kanban + Decisions (Session 4)**
 
 ---
 
