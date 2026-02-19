@@ -12,3 +12,16 @@ godot/build/
 tools/.dev_dispatcher.lock
 tools/dev_dispatcher_state.json
 
+# Obsidian (track minimal; ignore volatile layout)
+docs/obsidian_vault/.obsidian/workspace.json
+
+# Python cache
+tools/__pycache__/
+**/__pycache__/
+
+# Temp/one-off files
+_tmp*
+
+# Godot UID sidecar files (generated)
+**/*.uid
+
