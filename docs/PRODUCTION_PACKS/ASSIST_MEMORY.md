@@ -5,6 +5,7 @@
 
 ## Last updated
 - 2026-02-19 (Session 5 — Decisions 전부 해제, TC04 Quick Test 추가, SFX 커맨드 추가)
+- 2026-02-19 (Session 7 — Narrative pack 재생성: Logline v001 + UI Seeds v001 + KO Microcopy v002)
 
 ## What shipped (links)
 - Audio:
