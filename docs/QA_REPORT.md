@@ -1,12 +1,12 @@
 # QA_REPORT
 
 <!-- DEV_REQUEST:start -->
-title: TC04: spike wall enemy damage feedback + stop wall sliding
+title: TC04: wall_hit + commit_enter alias + clear feedback + stop wall sliding
 priority: P0
 scope: godot
-acceptance: In TC04 Spike Arena, when Charger hits SpikeWall, player gets clear confirmation (SFX or on-screen text) and log includes wall_hit(target=enemy, damage>0). Charger should not keep sliding/crushing along the wall after impact (short stop/stun/repel ok).
-notes: Manual TC04 (2026-02-18): 0/5 had any damage feeling; no audible SFX; only “hit wall then slide forward”. Keep changes minimal; do not rename events.
-dispatch: hold
+acceptance: In TC04 Spike Arena, when Charger hits SpikeWall, player gets clear confirmation (SFX OR on-screen text + hit marker) and logs include BOTH legacy + alias events: spikewall_hit + wall_hit(target=enemy, damage>0) and intent_commit + commit_enter (do not rename/remove legacy). Charger must not keep sliding/crushing along the wall after impact (short stop/stun/repel ok).
+notes: Manual TC04 (2026-02-18): 0/5 had any damage feeling; no audible SFX; only “hit wall then slide forward”. Keep changes minimal; do not rename events. If SFX assets are missing, code should fail gracefully (skip play) but still provide on-screen confirmation.
+dispatch: now
 <!-- DEV_REQUEST:end -->
 
 ## 2026-02-17 — DEV-002 smoke + Week 1 logging validation (headless)
