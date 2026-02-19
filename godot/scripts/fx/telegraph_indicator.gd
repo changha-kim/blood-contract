@@ -55,13 +55,26 @@ func set_style_commit() -> void:
 	line.default_color = Color(1.0, 0.10, 0.10, 0.95)
 	line.width = 12.0
 
+const SFX_LOCK_PRIMARY_PATH := "res://assets/audio/sfx/sfx_lock_primary.wav"
+
 func _on_sfx_requested(sfx_id: String) -> void:
 	if sfx_id == "telegraph_commit":
-		_play_commit_beep()
+		_play_lock_primary()
 
-func _play_commit_beep() -> void:
-	# Placeholder SFX: generated short tone (no external asset dependency).
-	# This is intentionally simple for PoC readability tests.
+func _play_lock_primary() -> void:
+	# Prefer real asset SFX for LOCK moment; fallback to generated beep if missing.
+	var stream := load(SFX_LOCK_PRIMARY_PATH)
+	if stream is AudioStream:
+		if sfx.playing:
+			sfx.stop()
+		sfx.stream = stream
+		sfx.volume_db = -6.0
+		sfx.play()
+		return
+	_play_commit_beep_fallback()
+
+func _play_commit_beep_fallback() -> void:
+	# Fallback: generated short tone (keeps PoC working even if import fails).
 	if sfx.playing:
 		sfx.stop()
 	var gen := AudioStreamGenerator.new()

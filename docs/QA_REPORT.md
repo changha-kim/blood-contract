@@ -6,7 +6,7 @@ priority: P0
 scope: godot
 acceptance: In TC04 Spike Arena, when Charger hits SpikeWall, (1) Charger does not keep sliding sideways along the wall due to inertia; on first wall collision during execute, lateral velocity is clamped (stop or small repel ok) and the enemy transitions cleanly into recover. (2) "유도 성공" feedback reliably shows on each induced_success trigger per run, including after F5 restart (no one-time-only bug). (3) Add lightweight logging to disambiguate why Charger disappears: distinguish deaths from SpikeWall damage vs player collision damage; ensure player collision does NOT unintentionally damage the enemy unless explicitly intended.
 notes: Field test (2026-02-19): damage feedback feels OK; lateral wall drift remains. Observed: Charger disappears after ~13 body-crush contacts with player; if player dodges, Charger can keep charging indefinitely. Observed: "유도 성공" shows only once and not after F5 restart. Also: player can pass through/hide inside SpikeWall (confirm if intended for PoC).
-dispatch: now
+dispatch: hold
 <!-- DEV_REQUEST:end -->
 
 <!-- DEV_REQUEST:start -->
@@ -15,7 +15,7 @@ priority: P0
 scope: godot
 acceptance: (1) `sfx_wall_hit_impact.ogg` and `sfx_lock_primary.ogg` exist under `godot/assets/audio/sfx/` and are loadable in Godot. (2) TC04 SpikeWall enemy hit uses `sfx_wall_hit_impact` (audible, not clipping). (3) TC01 LOCK primary cue uses `sfx_lock_primary` (short, crisp). (4) If any source is not CC0, update credits per repo policy.
 notes: Follow sourcing plan `docs/PRODUCTION_PACKS/AUDIO/BC_AUDIO_SFX_SOURCING_PLAN_v003.md`. Keep the sounds short (0.15–0.35s) and phone-speaker readable. Prefer CC0 sources.
-dispatch: now
+dispatch: hold
 <!-- DEV_REQUEST:end -->
 
 ## 2026-02-17 — DEV-002 smoke + Week 1 logging validation (headless)

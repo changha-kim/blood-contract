@@ -1,6 +1,8 @@
 extends StaticBody2D
 class_name SpikeWall
 
+const SFX_WALL_HIT_IMPACT_PATH := "res://assets/audio/sfx/sfx_wall_hit_impact.wav"
+
 signal induced_success(enemy_id: String, intent_id: String, wall_id: String)
 # Relaxed success trigger for automation: any enemy wall hit that applies damage.
 signal enemy_wall_hit(enemy_id: String, wall_id: String, damage: int)
@@ -104,7 +106,8 @@ func _on_area_entered(a: Area2D) -> void:
 	})
 	if is_enemy:
 		Feedback.show_text("SPIKE HIT!", 0.55)
-		# Visual marker at impact to improve readability (TC04).
+		# Audio + visual marker at impact to improve readability (TC04).
+		_play_wall_hit_impact_sfx(hb.global_position)
 		Feedback.spawn_hit_point(hb.global_position)
 		EventLogger.log_event("spikewall_hitpoint", {
 			"run_id": RunManager.current_run_id,
@@ -158,6 +161,24 @@ func _log_wall_hit_alias(target_id: String, target_type: String, damage: int, ts
 		"damage": damage,
 		"ts_msec": ts_msec,
 	})
+
+func _play_wall_hit_impact_sfx(world_pos: Vector2) -> void:
+	var stream := load(SFX_WALL_HIT_IMPACT_PATH)
+	if not (stream is AudioStream):
+		return
+	var p := AudioStreamPlayer2D.new()
+	p.stream = stream
+	p.bus = "Master"
+	p.volume_db = -4.0
+	p.global_position = world_pos
+	p.max_distance = 900.0
+	p.attenuation = 1.2
+	add_child(p)
+	p.finished.connect(func() -> void:
+		if is_instance_valid(p):
+			p.queue_free()
+	)
+	p.play()
 
 func _micro_slow(duration_sec: float) -> void:
 	Engine.time_scale = 0.9

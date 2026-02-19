@@ -25,6 +25,11 @@ The vault is for **navigation + dashboards + session logs**.
 ## What goes into the Obsidian Vault
 Location: `docs/obsidian_vault/`
 
+### Vault scope gotcha (important)
+If you open the vault root as `docs/obsidian_vault/`, anything under `docs/PRODUCTION_PACKS/` (e.g. narrative spine) is **outside the vault** and won’t show up in search.
+
+**Recommended:** open Obsidian vault root as `docs/` when you need full-doc search, or use a deliberate link/replication strategy for the few files you want searchable inside the vault.
+
 Allowed content (team-facing):
 - `00_DASHBOARD.md` (today / this week / quick links)
 - `PACKETS_INDEX.md` (links to SSOT)
