@@ -7,6 +7,7 @@ const MAIN_MENU_SCENE: String = "res://scenes/ui/MainMenu.tscn"
 const TEST_ARENA_SCENE: String = "res://scenes/levels/TestArena.tscn"
 const INTENT_ARENA_SLASHER_SCENE: String = "res://scenes/levels/IntentArena_Slasher.tscn"
 const SPIKE_ARENA_GAUNTLET_LANE_SCENE: String = "res://scenes/levels/SpikeArena_GauntletLane.tscn"
+const COMBAT_PLAYGROUND_SCENE: String = "res://scenes/levels/Playground_CombatSkeleton.tscn"
 
 var _did_bootstrap: bool = false
 
@@ -69,6 +70,9 @@ func go_to_spike_arena_gauntlet_lane() -> void:
 	# When called from autoload _ready(), scene tree can be mid-mutation.
 	# Defer to avoid "Parent node is busy" errors (common in headless automation).
 	call_deferred("_deferred_change_scene", SPIKE_ARENA_GAUNTLET_LANE_SCENE)
+
+func go_to_combat_playground() -> void:
+	_get_tree_safe().change_scene_to_file(COMBAT_PLAYGROUND_SCENE)
 
 func _deferred_change_scene(scene_path: String) -> void:
 	_get_tree_safe().change_scene_to_file(scene_path)
