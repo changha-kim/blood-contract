@@ -1,3 +1,7 @@
+---
+kanban-plugin: basic
+---
+
 # Assist Dept — Status Board
 > Last updated: **2026-02-19 (Session 4 — P0 소싱 확정)**
 > Sprint: Week1 M1 | 목표: TC01(LOCK 큐) + TC04(SpikeWall 피해) 블로커 해제
@@ -8,7 +12,6 @@
 
 > Obsidian Community Plugin **Kanban** 설치 시 아래 블록이 실제 칸반 보드로 렌더링됩니다.
 
-```kanban
 ## Backlog
 - [ ] Design: Shielder/Slasher LOCK 변형 스펙
 - [ ] Data: TC10 집계 스키마
@@ -32,7 +35,6 @@
 - [x] Narrative: HUD 표시어 추천안 확정
 - [x] Data: Tier3/4 발동 시점 추천
 - [x] Design: TC01/TC04 구현 체크리스트 (v003)
-```
 
 ---
 
@@ -40,13 +42,13 @@
 
 ### ✅ Done
 
-| Owner | 항목 | 완료 내용 |
-|---|---|---|
-| Audio | `wall_hit_impact` 소스 확정 | BFXR 생성 → [소싱 플랜](../../PRODUCTION_PACKS/AUDIO/BC_AUDIO_SFX_SOURCING_PLAN_v003.md) |
-| Audio | `lock_primary` 소스 확정 | freesound CC0 검색 확정 → [소싱 플랜](../../PRODUCTION_PACKS/AUDIO/BC_AUDIO_SFX_SOURCING_PLAN_v003.md) |
-| Narrative | HUD 표시어 추천안 확정 | 안A 전원 추천 → DECISION-1 표 참조 |
-| Data | Tier3/4 발동 시점 추천 | 카드 선택 화면 추천 → DECISION-2 참조 |
-| Design | TC01/TC04 구현 체크리스트 | 이전 세션 산출 (재생성 대기) |
+| Owner     | 항목                      | 완료 내용                                                                                          |
+| --------- | ----------------------- | ---------------------------------------------------------------------------------------------- |
+| Audio     | `wall_hit_impact` 소스 확정 | BFXR 생성 → [소싱 플랜](../../PRODUCTION_PACKS/AUDIO/BC_AUDIO_SFX_SOURCING_PLAN_v003.md)             |
+| Audio     | `lock_primary` 소스 확정    | freesound CC0 검색 확정 → [소싱 플랜](../../PRODUCTION_PACKS/AUDIO/BC_AUDIO_SFX_SOURCING_PLAN_v003.md) |
+| Narrative | HUD 표시어 추천안 확정          | 안A 전원 추천 → DECISION-1 표 참조                                                                     |
+| Data      | Tier3/4 발동 시점 추천        | 카드 선택 화면 추천 → DECISION-2 참조                                                                    |
+| Design    | TC01/TC04 구현 체크리스트      | 이전 세션 산출 (재생성 대기)                                                                              |
 
 ---
 
@@ -63,12 +65,12 @@
 
 ### 🚧 Blocked — 결정 대기
 
-| 항목 | 블로커 | 해제 조건 |
-|---|---|---|
-| lk_{key} 값 확정 | DECISION-1 미결 | 아래 표 ✅ 표시 |
-| 스팅어 SFX 구현 | DECISION-2 미결 | 아래 표 ✅ 표시 |
-| 카드 JSON 파일 작성 | cost 필드 확정 필요 | 메인팀 "PoC 전부 0" 확인 |
-| TC02 dim 알고리즘 | Week1 포함 여부 미결 | 메인팀 스코프 결정 |
+| 항목            | 블로커            | 해제 조건             |
+| ------------- | -------------- | ----------------- |
+| lk_{key} 값 확정 | DECISION-1 미결  | 아래 표 ✅ 표시         |
+| 스팅어 SFX 구현    | DECISION-2 미결  | 아래 표 ✅ 표시         |
+| 카드 JSON 파일 작성 | cost 필드 확정 필요  | 메인팀 "PoC 전부 0" 확인 |
+| TC02 dim 알고리즘 | Week1 포함 여부 미결 | 메인팀 스코프 결정        |
 
 ---
 
