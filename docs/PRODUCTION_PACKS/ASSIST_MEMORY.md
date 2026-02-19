@@ -4,7 +4,7 @@
 > Goal: maintain continuity without touching gameplay code.
 
 ## Last updated
-- 2026-02-19 (Session 4 — P0 소싱 확정 + Decision 카드 작성)
+- 2026-02-19 (Session 5 — Decisions 전부 해제, TC04 Quick Test 추가, SFX 커맨드 추가)
 
 ## What shipped (links)
 - Audio:
